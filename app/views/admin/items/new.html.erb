@@ -1,2 +1,17 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="container mt-4 ml-10">
+  <div class="col">
+    <h4>商品新規登録</h4>
+  </div>
+</div>
+
+<%= form_with model: Item.new do |f| %>
+<div class="container mt-5 ml-17">
+  <div class="row">
+    <p>商品画像</p>
+    <%= image_tag @item.image.variant(resize:'200x100') %>
+  </div>
+  
+  <div class="row">
+      <div class="form-group">
+  
+    
