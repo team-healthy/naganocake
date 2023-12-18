@@ -13,15 +13,15 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :admin do
-    resources :customers, only: [:index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit]
   end
 
   namespace :admin do
-    resources :genres, only: [:index, :edit, :create, :update]
+    resources :genres, only: [:index, :edit]
   end
 
   namespace :admin do
-    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :items, only: [:index, :new, :show, :edit]
   end
 
   namespace :admin do
@@ -34,20 +34,14 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :orders, only: [:new, :index, :show]
-    post 'orders/confirm' => 'orders#confirm'
-    get 'orders/complete' => 'orders#complete'
-    post 'orders' => 'orders#create'
   end
 
   scope module: :public do
-    resources :cart_items, only: [:index, :create, :update, :destroy]
-    delete 'cart_items' => 'cart_items#destroy_all'
+    resources :cart_items, only: [:index]
   end
 
   scope module: :public do
-    resources :customers, only: [:edit, :show, :update]
-    get 'customers/confirm_withdraw' => 'customers#confirm_withdraw'
-    patch 'customers/withdraw' => 'customers#withdraw'
+    resources :customers, only: [:edit, :show]
   end
 
   scope module: :public do
