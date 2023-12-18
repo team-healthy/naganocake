@@ -4,8 +4,8 @@
 
     <%= form_with model: @address, url: addresses_path do |f|  %>
     　<div>
-      <%= f.label :post_code, "郵便番号(ハイフンなし)",class: "col-3" %>
-      <%= f.text_field :post_code,class: "col-3" %>
+      <%= f.label :post_code, "郵便番号(ハイフンなし)", class: "col-3" %>
+      <%= f.text_field :post_code,class: "col-3", placeholder: "0000000" %>
       </div>
       <div>
       <%= f.label :address, "住所",class: "col-3" %>
