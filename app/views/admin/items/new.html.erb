@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <%= form_with model: @item do |f| %>
+  <%= form_with model: @item, url: admin_items_path do |f| %>
     <table class="table table-borderless">
       <tr>
         <td>商品画像</td>

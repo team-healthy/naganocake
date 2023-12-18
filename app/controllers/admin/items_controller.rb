@@ -10,15 +10,16 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       flash[:notice] = "新規登録に成功しました"
-      redirect_to admin_item_path
+      redirect_to admin_item_path(@item)
     else
       @items = Items.all
-      redirect_to admin_item_path
+      redirect_to admin_items_path
     end
   end
 
   def index
     @items = Item.all
+    @genres = Genre.all
   end
 
   def show

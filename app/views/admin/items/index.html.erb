@@ -5,27 +5,27 @@
     </div>
   </div>
 
-  <% @items.each do |item| %>
-    <table>
-      <thead class="table-active">
-        <tr>
-          <td>商品ID</td>
-          <td>商品名</td>
-          <td>税抜価格</td>
-          <td>ジャンル</td>
-          <td>ステータス</td>
-        </tr>
-      </thead>
-      <tbody class="table table-borderless">
-        <tr>
-          <td><%= item.id %></td>
-          <td><%= item.name %></td>
-          <td><%= item.price %></td>
-          <td><%= item.genre_id %></td>
-          <td><%= item.is_active %></td>
-        </tr>
-      </tbody>
-    </table>
-  <% end %>
+  <table>
+    <thead class="table-active">
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <% @items.each do |item| %>
+    <tbody class="table table-borderless">
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.name %></td>
+        <td><%= item.price %></td>
+        <td><%= item.genre.name %></td>
+        <td><%= item.is_active %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
 </div>
 
