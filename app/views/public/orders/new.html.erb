@@ -4,11 +4,9 @@
 
 <!--  <h3>支払い方法</h3>-->
 
-<!--<%#= f.radio_button :payment_method, Order.payment_methods.key(0) %>-->
-<!--<%#= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>-->
 
-<!--<%#= f.radio_button :payment_method, Order.payment_methods.key(1) %>-->
-<!--<%#= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>-->
+
+
 
 
 <!-- <%#= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>-->
@@ -19,24 +17,24 @@
 
 <div class="container p-3">
   <div class="row">
-  <%= render 'public/shared/header.html.erb' %>
+  <!--<%#= render 'public/shared/header.html.erb' %>-->
   <div class="col-md-12">
 
     <h3>注文情報入力</h3>
     <%= form_with model: @order, url: orders_confirm_path, method: :get do |f|  %>
 
     <h4>支払い方法</h4>
-     <%= f.radio_button :payment_method, :credit_card, checked: true %>
-     <%= f.label :payment_method, Order.pay_methods_i18n[:credit_card], {value: :credit_card} %>
+    <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+    <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
     <br>
-    <%= f.radio_button :payment_method, :transfer %>
-    <%= f.label :payment_method, Order.pay_methods_i18n[:transfer], {value: :transfer} %>
+    <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+    <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
 
     <div>
     <h4>お届け先</h4>
     <%= f.radio_button :address_type, "member_address", checked: true %>
     <%= f.label :address_type, "ご自身の住所" %>
-    〒<%= current_customer.post_code + "　" + current_customer.address + "　" + current_member.family_name + current_member.first_name %>
+    <!--〒<%#= current_customer.post_code + "　" + current_customer.address + "　" + current_member.family_name + current_member.first_name %>-->
     </div>
 
     <br>
@@ -69,6 +67,6 @@
 
   </div>
 
-  <%= render 'public/shared/footer.html.erb' %>
+  <!--<%#= render 'public/shared/footer.html.erb' %>-->
   </div>
 </div>
