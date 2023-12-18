@@ -19,7 +19,11 @@
     <tbody class="table table-borderless">
       <tr>
         <td><%= item.id %></td>
-        <td><%= item.name %></td>
+        <td>
+          <%= link_to admin_item_path(item), class: "link-dark link-underline-dark" do %>
+            <%= item.name %>
+          <% end %>
+        </td>
         <td><%= item.price %></td>
         <td><%= item.genre.name %></td>
         <td><%= item.is_active %></td>

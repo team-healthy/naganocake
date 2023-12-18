@@ -19,7 +19,6 @@ class Admin::ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    @genres = Genre.all
   end
 
   def show
@@ -32,9 +31,10 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
+    @genres = Genre.all
     if @item.update(item_params)
       flash[:notice] = '変更を保存しました'
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item)
     else
       render :edit
     end
