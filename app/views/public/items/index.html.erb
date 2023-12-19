@@ -9,7 +9,7 @@
         <p><%= image_tag item.image, size: "200x150" %></p>
       <% end %>
       <p><%= link_to item.name, item_path(item) %></p>
-      <p>¥<%= item.add_tax_price.to_s(:delimited) %></p>
+      <p>¥<%= item.with_tax_price.to_s(:delimited) %></p>
     <% end %>
   </div>
 </div>

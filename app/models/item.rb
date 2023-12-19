@@ -10,9 +10,9 @@ class Item < ApplicationRecord
 
   enum is_active: {販売中:0, 販売停止中:1}
 
-  # 消費税の計算
-  def add_tax_price
-    (self.price * 1.10).round
+  # 消費税を求めるメソッド
+  def with_tax_price
+    (price * 1.1).floor
   end
 
 end
