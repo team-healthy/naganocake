@@ -1,6 +1,6 @@
 <div class="container p-3">
   <div class="row">
-  <%= render 'public/shared/header.html.erb' %>
+  <%#= render 'public/shared/header.html.erb' %>
   <div class="col-md-12">
     <h3>注文情報確認</h3>
 
@@ -27,7 +27,7 @@
     <table class="table">
       <tr>
         <td>送料</td>
-        <td><%= @shipping_fee %></td>
+        <td><%= @shipping_cost %></td>
       </tr>
       <tr>
         <td>商品合計</td>
@@ -41,18 +41,17 @@
 
     <h4>支払い方法</h4>
 
-    <% if @selected_pay_method == "credit_card" %>
+    <% if @selected_payment_method == "credit_card" %>
       クレジットカード
     <% else %>
       銀行振込
     <% end %>
 
-    <h4>お届け先</h4>
-    <%= @selected_address %>
+    <h4>お届け先</h4><%= "〒"+ @selected_address %>
 
     <%= form_with url: orders_path, method: :post do %>
 
-      <%= hidden_field_tag 'order[pay_method]', @selected_pay_method %>
+      <%= hidden_field_tag 'order[pay_method]', @selected_payment_method %>
       <%= hidden_field_tag 'order[address_type]', @address_type %>
 
       <% if @address_type == "registered_address" %>
@@ -66,6 +65,6 @@
     <% end %>
   </div>
 
-    <%= render 'public/shared/footer.html.erb' %>
+    <%#= render 'public/shared/footer.html.erb' %>
   </div>
 </div>
