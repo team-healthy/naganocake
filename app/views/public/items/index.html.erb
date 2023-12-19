@@ -1,2 +1,9 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<%= form_with model: @item do |f| %>
+<div class="container">
+  <div class="row">
+    <h4>商品一覧（全<%= @item %>件）</h4>
+  </div>
+
+  <p><%= image_tag @item.image, size: "350x300" %></p>
+  <p></p>
+<% end %>
