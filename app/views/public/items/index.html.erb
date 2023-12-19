@@ -1,9 +1,13 @@
-<%= form_with model: @item do |f| %>
 <div class="container">
   <div class="row">
-    <h4>商品一覧（全<%= @item %>件）</h4>
+    <h4>商品一覧（全<%= @quantity %>件）</h4>
   </div>
 
-  <p><%= image_tag @item.image, size: "350x300" %></p>
-  <p></p>
-<% end %>
+  <div class="row">
+  <% @items.each do |item| %>
+    <!--<p><#%= image_tag item.image, size: "350x300" %></p>-->
+    <p><%= link_to item.name, item_path(item) %></p>
+    <p>¥<%= item.add_tax_price.to_s(:delimited) %></p>
+  <% end %>
+  </div>
+</div>

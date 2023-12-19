@@ -1,2 +1,30 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<%= form_with model: @item do |f| %>
+  <div class="row">
+    <div class="col-md-3">
+      <td><%= image_tag @item.image, size: "250x200" %><td>
+    </div>
+
+    <div class="col-md-8">
+      <table class="table table-borderless">
+        <tr>
+          <td><%= @item.name %></td>
+        </tr>
+        <tr>
+          <td><%= @item.introduction %></td>
+        </tr>
+        <tr></tr>
+        <tr>
+          <!--税率を変更する場合はモデルの変更だけでOK。"delimited"は数値を3桁区切りにしてる。-->
+          <td>¥<%= @item.add_tax_price.to_s(:delimited) %> (税込)</td>
+        </tr>
+        <tr>
+          <td><%= f.select :amount, options_for_select(*[1..20]) %></td>
+          <td><%= link_to 'カートに入れる', cart_items_path, class: 'btn btn-success' %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+
+
