@@ -12,8 +12,8 @@ class Admin::ItemsController < ApplicationController
       flash[:notice] = "新規登録に成功しました"
       redirect_to admin_item_path(@item)
     else
-      @items = Items.all
-      redirect_to admin_items_path
+      @items = Item.all
+      render :new
     end
   end
 
@@ -31,7 +31,6 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @genres = Genre.all
     if @item.update(item_params)
       flash[:notice] = '変更を保存しました'
       redirect_to admin_item_path(@item)
