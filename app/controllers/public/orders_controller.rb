@@ -36,13 +36,14 @@ class Public::OrdersController < ApplicationController
   	    else
   	   render :new
   	    end
+
         when "new_address"
         unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-  	  @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+  	      @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
   	    else
   	  render :new
   	    end
-        end
+     end
     end
 
     def create
@@ -113,7 +114,7 @@ class Public::OrdersController < ApplicationController
 
     private
     def order_params
-      params.require(:order).permit(:payment_metho, :post_code, :address, :name)
+      params.require(:order).permit(:payment_method, :post_code, :address, :name)
     end
 
 end

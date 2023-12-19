@@ -4,7 +4,7 @@
   <div class="col-md-12">
 
     <h3>注文情報入力</h3>
-    <%= form_with model: @order, url: orders_confirm_path, method: :get , local: true do |f|  %>
+    <%= form_with model: @order, url: orders_confirm_path, method: :post do |f|  %>
 
     <h4>支払い方法</h4>
     <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
@@ -46,6 +46,7 @@
 
     <br>
     <%= f.submit "確認画面へ進む", class: "btn btn-info" %>
+
     <% end %>
 
   </div>
