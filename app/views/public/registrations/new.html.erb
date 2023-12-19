@@ -15,22 +15,22 @@
         
           <div class="field">
             <%= f.label :（姓） %><br />
-            <%= f.text_field :last_name, autofocus: true, autocomplete: "姓" %>
+            <%= f.text_field :last_name, placeholder: "令和", autofocus: true, autocomplete: "姓" %>
           </div>
         
           <div class="field">
             <%= f.label :（名） %><br />
-            <%= f.text_field :first_name, autofocus: true, autocomplete: "名" %>
+            <%= f.text_field :first_name, placeholder: "道子", autofocus: true, autocomplete: "名" %>
           </div>
         
           <div class="field">
             <%= f.label :（セイ） %><br />
-            <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "カナ姓" %>
+            <%= f.text_field :last_name_kana, placeholder: "レイワ",autofocus: true, autocomplete: "カナ姓" %>
           </div>
         
           <div class="field">
             <%= f.label :（メイ） %><br />
-            <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "カナ名" %>
+            <%= f.text_field :first_name_kana, placeholder: "道子", autofocus: true, autocomplete: "カナ名" %>
           </div>
         
           <div class="field">
@@ -40,17 +40,17 @@
           
           <div class="field">
             <%= f.label :郵便番号（ハイフンなし） %><br />
-            <%= f.text_field :post_code, autofocus: true, autocomplete: "郵便番号" %>
+            <%= f.text_field :post_code, placeholder: "0000000", autofocus: true, autocomplete: "郵便番号" %>
           </div>
         
           <div class="field">
             <%= f.label :住所 %><br />
-            <%= f.text_field :address, autofocus: true, autocomplete: "住所" %>
+            <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", autofocus: true, autocomplete: "住所" %>
           </div>
         
           <div class="field">
             <%= f.label :電話番号（ハイフンなし） %><br />
-            <%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
+            <%= f.text_field :phone_number, placeholder: "00000000000", autofocus: true, autocomplete: "電話番号" %>
           </div>
          
           <div class="field">
