@@ -1,27 +1,10 @@
-<!--<h4>注文情報入力</h4>-->
-
-<!--<%#= form_with model: @order, url: '/orders/confirm' , local: true do |f| %>-->
-
-<!--  <h3>支払い方法</h3>-->
-
-
-
-
-
-
-<!-- <%#= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>-->
-
-
-
-<!--<%# end %>-->
-
 <div class="container p-3">
   <div class="row">
   <!--<%#= render 'public/shared/header.html.erb' %>-->
   <div class="col-md-12">
 
     <h3>注文情報入力</h3>
-    <%= form_with model: @order, url: orders_confirm_path, method: :get do |f|  %>
+    <%= form_with model: @order, url: orders_confirm_path, method: :get , local: true do |f|  %>
 
     <h4>支払い方法</h4>
     <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
@@ -39,9 +22,9 @@
 
     <br>
     <%= f.radio_button :address_type, [:registered_address] %>
-    <%= f.label :address_type, "登録済住所から選択" %>
-    <%= f.select :registered_address_id, current_customer.addresses.all.map { |m| [[m.post_code, m.address, m.name].join(" "), m.id] } ,include_blank: "登録してある配送先住所から選択" %>
-
+    <%= f.label :address_type, "登録済住所から選択" %></br>
+    <%= f.select :registered_address_id, current_customer.addresses.all.map { |m| [["〒",m.post_code, m.address, m.name].join(" "), m.id] } ,include_blank: "登録してある配送先住所から選択" %>
+　　<%#= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
 
     <br>
     <%= f.radio_button :address_type, "new_address" %>

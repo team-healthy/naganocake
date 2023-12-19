@@ -9,7 +9,7 @@ class Public::OrdersController < ApplicationController
    def confirm
       @cart_items = CartItem.where(customer_id: current_customer.id)
       @shipping_cost = 800 #送料は800円で固定
-      @selected_pay_method = params[:order][:pey_method]
+      @selected_payment_method = params[:order][:peyment_method]
       
       #以下、商品合計額の計算
       ary = []
@@ -20,39 +20,39 @@ class Public::OrdersController < ApplicationController
       
       @total_price = @shipping_cost + @cart_items_price
       @address_type = params[:order][:address_type]
-      case @address_type
-      when "member_address"
-        @selected_address = current_member.post_code + " " + current_member.address + " " + current_member.family_name + current_member.first_name
-      when "registered_address"
+        case @address_type
+        when "member_address"
+        @selected_address = current_customer.post_code + " " + current_customer.address + " " + current_customer.last_name + current_customer.first_name
+        when "registered_address"
         unless params[:order][:registered_address_id] == ""
           selected = Address.find(params[:order][:registered_address_id])
           @selected_address = selected.post_code + " " + selected.address + " " + selected.name
-
-	 else	 
-	   render :new
-	 end
-      when "new_address"
+          
+  	    else	 
+  	   render :new
+  	    end
+        when "new_address"
         unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-	  @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
-	else
-	  render :new
-	end
-      end     
+  	  @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+  	    else
+  	  render :new
+  	    end
+        end     
     end
     
     def create
       @order = Order.new
-      @order.member_id = current_member.id
-      @order.shipping_fee = 800
-      @cart_items = CartItem.where(member_id: current_member.id)
+      @order.customer_id = current_customer.id
+      @order.shipping_cost = 800
+      @cart_items = CartItem.where(customer_id: current_customer.id)
       ary = []
       @cart_items.each do |cart_item|
         ary << cart_item.item.price*cart_item.quantity
       end
       @cart_items_price = ary.sum
       @order.total_price = @order.shipping_fee + @cart_items_price
-      @order.pay_method = params[:order][:pay_method]
-      if @order.pay_method == "credit_card"
+      @order.pay_method = params[:order][:payment_method]
+      if @order.payment_method == "credit_card"
         @order.status = 1
       else
         @order.status = 0

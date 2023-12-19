@@ -3,7 +3,8 @@
 
     <h4>配送先編集</h4>
 
-    <%= form_with model: @address, url: addresses_path do |f|  %>
+    <%= form_with model: @address, url: address_path(@address), method: :patch do |f| %>
+
     　<div>
       <%= f.label :post_code, "郵便番号(ハイフンなし)",class: "col-3" %>
       <%= f.text_field :post_code,class: "col-3" %>
@@ -18,7 +19,8 @@
       <div>
       <%= f.label :name, "宛名",class: "col-3" %>
       <%= f.text_field :name,class: "col-3" %>
-      <%= f.submit "変更内容を保存",class: "btn btn-success text-center" %>
+      <%= f.submit "変更内容を保存", class: "btn btn-success text-center" %>
+
       </div>
 
      <% end %>
