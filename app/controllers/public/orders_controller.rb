@@ -9,7 +9,7 @@ class Public::OrdersController < ApplicationController
    def confirm
       @cart_items = CartItem.where(customer_id: current_customer.id)
       @shipping_cost = 800 #送料は800円で固定
-      @selected_payment_method = params[:order][:peyment_method]
+      @selected_payment_method = params[:order][:payment_method]
       #以下、商品合計額の計算
       ary = []
       @cart_items.each do |cart_item|
@@ -63,8 +63,8 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     when "registered_address"
-      Addresse.find(params[:order][:registered_address_id])
-      selected = Addresse.find(params[:order][:registered_address_id])
+      Address.find(params[:order][:registered_address_id])
+      selected = Address.find(params[:order][:registered_address_id])
       @order.post_code = selected.post_code
       @order.address = selected.address
       @order.name = selected.name

@@ -51,7 +51,7 @@
 
     <%= form_with url: orders_path, method: :post do %>
 
-      <%= hidden_field_tag 'order[pay_method]', @selected_payment_method %>
+      <%= hidden_field_tag 'order[payment_method]', @selected_payment_method %>
       <%= hidden_field_tag 'order[address_type]', @address_type %>
 
       <% if @address_type == "registered_address" %>
