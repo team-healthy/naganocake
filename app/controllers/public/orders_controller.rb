@@ -1,23 +1,28 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def new
     @order = Order.new
     @addresses = Address.all
   end
 
    def confirm
+      @order = Order.new(order_params)
+      @address = Address.find(params[:order][:address_id])
+      @order.post_code = current_customer.post_code
+      @order.address = current_customer.address
+      @order.name = current_customer.first_name + current_customer.last_name
       @cart_items = CartItem.where(customer_id: current_customer.id)
       @shipping_cost = 800 #送料は800円で固定
       @selected_payment_method = params[:order][:peyment_method]
-      
+
       #以下、商品合計額の計算
       ary = []
       @cart_items.each do |cart_item|
         ary << cart_item.item.price*cart_item.quantity
       end
       @cart_items_price = ary.sum
-      
+
       @total_price = @shipping_cost + @cart_items_price
       @address_type = params[:order][:address_type]
         case @address_type
@@ -27,8 +32,8 @@ class Public::OrdersController < ApplicationController
         unless params[:order][:registered_address_id] == ""
           selected = Address.find(params[:order][:registered_address_id])
           @selected_address = selected.post_code + " " + selected.address + " " + selected.name
-          
-  	    else	 
+
+  	    else
   	   render :new
   	    end
         when "new_address"
@@ -37,9 +42,9 @@ class Public::OrdersController < ApplicationController
   	    else
   	  render :new
   	    end
-        end     
+        end
     end
-    
+
     def create
       @order = Order.new
       @order.customer_id = current_customer.id
@@ -57,7 +62,7 @@ class Public::OrdersController < ApplicationController
       else
         @order.status = 0
       end
-      
+
       address_type = params[:order][:address_type]
       case address_type
     when "member_address"
@@ -75,7 +80,7 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:order][:new_address]
       @order.name = params[:order][:new_name]
     end
-    
+
     if @order.save
       if @order.status == 0
         @cart_items.each do |cart_item|
@@ -91,19 +96,24 @@ class Public::OrdersController < ApplicationController
     else
       render :items
     end
-  end    
   end
-    
+
+
     def index
-      @orders = Order.where(member_id: current_member.id).order(created_at: :desc).
+      @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
     end
-    
+
     def show
       @order = Order.find(params[:id])
       @order_details= OrderDetail.where(order_id: @order.id)
-    end 
-    
+    end
+
     def complete
     end
-    
-end 
+
+    private
+    def order_params
+      params.require(:order).permit(:payment_metho, :post_code, :address, :name)
+    end
+
+end

@@ -1,6 +1,6 @@
 <div class="container p-3">
   <div class="row">
-  <!--<%#= render 'public/shared/header.html.erb' %>-->
+
   <div class="col-md-12">
 
     <h3>注文情報入力</h3>
@@ -16,15 +16,15 @@
     <div>
     <h4>お届け先</h4>
     <%= f.radio_button :address_type, "member_address", checked: true %>
-    <%= f.label :address_type, "ご自身の住所" %>
-    <!--〒<%#= current_customer.post_code + "　" + current_customer.address + "　" + current_member.family_name + current_member.first_name %>-->
+    <%= f.label :address_type, "ご自身の住所" %></br>
+    〒<%= current_customer.post_code + "　" + current_customer.address %></br>
+    <%= current_customer.last_name + current_customer.first_name %>
     </div>
 
     <br>
     <%= f.radio_button :address_type, [:registered_address] %>
     <%= f.label :address_type, "登録済住所から選択" %></br>
-    <%= f.select :registered_address_id, current_customer.addresses.all.map { |m| [["〒",m.post_code, m.address, m.name].join(" "), m.id] } ,include_blank: "登録してある配送先住所から選択" %>
-　　<%#= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+    <%= f.select :registered_address_id, current_customer.addresses.all.map { |m| ["〒" + m.post_code, m.address, m.name].join("　") }, include_blank: "登録してある配送先住所から選択" %>
 
     <br>
     <%= f.radio_button :address_type, "new_address" %>
@@ -32,15 +32,15 @@
     <table>
       <tr>
         <td>郵便番号(ハイフンなし)</td>
-        <td><%= f.text_field :new_post_code %></td>
+        <td><%= f.text_field :new_post_code, placeholder: "0000000" %></td>
       </tr>
       <tr>
         <td>住所</td>
-        <td><%= f.text_field :new_address %></td>
+        <td><%= f.text_field :new_address, placeholder: "東京都渋谷区代々木神園町0-0" %></td>
       </tr>
       <tr>
         <td>宛名</td>
-        <td><%= f.text_field :new_name %></td>
+        <td><%= f.text_field :new_name, placeholder: "令和道子" %></td>
       </tr>
     </table>
 
@@ -50,6 +50,6 @@
 
   </div>
 
-  <!--<%#= render 'public/shared/footer.html.erb' %>-->
+
   </div>
 </div>
