@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   scope module: :public do
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/complete' => 'orders#complete'
+    get  "orders/confirm" => redirect("orders/complete")
     resources :orders, only: [:new, :index, :show]
     post 'orders' => 'orders#create'
   end
