@@ -1,10 +1,11 @@
+ 
+ 
+ 
  <table class='table table-hover table-inverse'>
           <thead>
             <tr>
-              <th></th>
               <th>会員ID</th>
               <th>氏名</th>
-              <th>Title</th>
               <th>メールアドレス</th>
               <th>ステータス</th>
               <th colspan="3"></th>
@@ -17,9 +18,8 @@
                   <tr>
                     <td><%= customer.id %></td>
                     <td>
-                      <%= link_to customer.last_name,customer %>
-                      <%= link_to customer.first_name,customer %>
-                      <% end %>
+                        <%= link_to customer.last_name, admin_customer_path(customer) %>
+                        <%= link_to customer.first_name, admin_customer_path(customer) %>
                     </td>
                     <td><%= customer.email %></td>
                     <td>
