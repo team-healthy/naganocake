@@ -20,15 +20,15 @@
       <td>
         <div class="row">
           <div class="col">
-            <%= cart_item.select :amount, options_for_select(*[1..20]) %>
+            <%= select_tag :amount, options_for_select(*[1..20]) %>
           </div>
           <div class="col">
             <%= link_to '変更', item_path(cart_item), class: 'btn btn-success' %>
           </div>
         </div>
       </td>
-      <td><%= cart_item.subtotal %></td>
-      <td><%= link_to '削除する', cart_items_path, class: 'btn btn-danger' %></td>
+      <td><%= cart_item.subtotal.to_s(:delimited) %></td>
+      <td><%= link_to '削除する', cart_items_path(@cart_item), method: :delete, class: 'btn btn-danger' %></td>
     </tr>
     <% end %>
   </table>
