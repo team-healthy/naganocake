@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     get 'customers/confirm_withdraw' => 'customers#confirm_withdraw'
     patch 'customers/withdraw' => 'customers#withdraw'
     resources :customers, only: [:edit, :show, :update]
-    
+
   end
 
   scope module: :public do
