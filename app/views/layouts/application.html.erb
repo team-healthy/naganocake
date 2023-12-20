@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WorkGithub</title>
+    <title>NaganoCake</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,43 +13,45 @@
 
   <body>
   <header>
-    
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
    
     <div class="container">
       <a class="navbar-brand" href="/" ><span>Nagano Cake</span></a>
         <ul class="navbar-nav ml-auto">
-        
+          
+        <!--<p>ようこそ<#%= current_customer.last_name %>さん！</p>-->
           
         <% if admin_signed_in? %>
           <% if request.fullpath.include? "/admin" %>
            <!--admin側ログイン後のheaderを返す-->
+           <li>
+              <%= link_to admin_items_path,class: "btn btn-secondary" do %>
+                商品一覧
+              <% end %>
+            </li>
             <li>
               <%= link_to admin_customers_path,class: "btn btn-secondary" do %>
                 会員一覧
               <% end %>
             </li>
             <li>
-              <%=  link_to admin_root_path,class: 'nav-link text-black' do %>
+              <%=  link_to admin_root_path,class: "btn btn-secondary" do %>
                 注文履歴一覧
               <% end %>
             </li>
             <li>
-              <%=  link_to admin_genres_path,class: 'nav-link text-black' do %>
+              <%=  link_to admin_genres_path,class: "btn btn-secondary" do %>
                 ジャンル一覧
               <% end %>
             </li>
             <li>
-              <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-black' do %>
+              <%= link_to destroy_admin_session_path, method: :delete,class: "btn btn-secondary" do %>
                 ログアウト
               <% end %>
             </li>
            
           <% else %>
              <!--customer側ログイン後のheaderを返す-->
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item login-customer text-white bg-dark">ようこそ<%= current_customer.last_name %>さん！</li>  
-            </ul>
             <li>
               <%= link_to customer_path(current_customer),class: "btn btn-secondary" do %>
                 マイページ
@@ -73,11 +75,6 @@
          <% end %>
         <% elsif customer_signed_in? %>
         <!--customerログイン後のheaderを返す  -->
-            <ul class="navbar-nav mr-auto">
-             <li class="nav-item login-customer text-white bg-dark">ようこそ<%= current_customer.last_name %>さん！</li>  
-            </ul>
-        
-        
             <li>
               <%= link_to customer_path(current_customer),class: "btn btn-secondary" do %>
                 マイページ
@@ -138,9 +135,12 @@
  
    
   <footer>
-    <div class="fixed-bottom" style="background: black">
-        <p class="text-center" style="color: white">team healthy</p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class='container mt-5'>
+    	<div class='row'>
+      </div>
    </div>
+   </nav>
   </footer>
  
  
