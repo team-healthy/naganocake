@@ -13,13 +13,13 @@
 
   <body>
   <header>
+    
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
    
     <div class="container">
       <a class="navbar-brand" href="/" ><span>Nagano Cake</span></a>
         <ul class="navbar-nav ml-auto">
-          
-        <!--<p>ようこそ<#%= current_customer.last_name %>さん！</p>-->
+        
           
         <% if admin_signed_in? %>
           <% if request.fullpath.include? "/admin" %>
@@ -47,6 +47,9 @@
            
           <% else %>
              <!--customer側ログイン後のheaderを返す-->
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item login-customer text-white bg-dark">ようこそ<%= current_customer.last_name %>さん！</li>  
+            </ul>
             <li>
               <%= link_to customer_path(current_customer),class: "btn btn-secondary" do %>
                 マイページ
@@ -70,6 +73,11 @@
          <% end %>
         <% elsif customer_signed_in? %>
         <!--customerログイン後のheaderを返す  -->
+            <ul class="navbar-nav mr-auto">
+             <li class="nav-item login-customer text-white bg-dark">ようこそ<%= current_customer.last_name %>さん！</li>  
+            </ul>
+        
+        
             <li>
               <%= link_to customer_path(current_customer),class: "btn btn-secondary" do %>
                 マイページ
@@ -130,12 +138,9 @@
  
    
   <footer>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class='container mt-5'>
-    	<div class='row'>
-      </div>
+    <div class="fixed-bottom" style="background: black">
+        <p class="text-center" style="color: white">team healthy</p>
    </div>
-   </nav>
   </footer>
  
  
