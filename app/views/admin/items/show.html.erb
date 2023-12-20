@@ -1,3 +1,7 @@
+<div class="row justify-content-center">
+  <%= flash[:notice] %>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col">
@@ -8,7 +12,7 @@
   <%= form_with model: @item do |f| %>
   <div class="row">
     <div class="col-md-3">
-      <!--<td><#%= image_tag @item.image, size: "200x100" %><td>-->
+      <td><%= image_tag @item.image, size: "350x300" %><td>
     </div>
 
     <div class="col-md-8 offset-md-1">
@@ -23,18 +27,19 @@
         </tr>
         <tr>
           <td>ジャンル</td>
-          <td><%= @item.genre_id %></td>
+          <td><%= @item.genre.name %></td>
         </tr>
         <tr>
           <td>税込価格<br>（税抜価格）</td>
-          <!--<td><%= @item.price %>(<#%= @item.price %>)</td>-->
+          <!--税率を変更する場合はモデルの変更だけでOK。"delimited"は数値を3桁区切りにしてる。-->
+          <td><%= @item.with_tax_price.to_s(:delimited) %> (<%= @item.price.to_s(:delimited) %>) 円</td>
         </tr>
         <tr>
           <td>販売ステータス</td>
           <td><%= @item.is_active %></td>
         </tr>
         <tr>
-          <td><%= f.submit '編集する', class: 'btn btn-success' %></td>
+          <td><%= link_to '編集する', edit_admin_item_path(@item), class: 'btn btn-success' %></td>
         </tr>
       </table>
     </div>
