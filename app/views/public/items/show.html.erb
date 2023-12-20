@@ -1,4 +1,4 @@
-<%= form_with model: @item do |f| %>
+<%= form_with model: @item, url: cart_items_path, method: :post do |f| %>
   <div class="row">
     <div class="col-md-3">
       <td><%= image_tag @item.image, size: "250x200" %><td>
@@ -19,7 +19,7 @@
         </tr>
         <tr>
           <td><%= f.select :amount, options_for_select(*[1..20]) %></td>
-          <td><%= link_to 'カートに入れる', cart_items_path, class: 'btn btn-success' %></td>
+          <td><%= f.submit 'カートに入れる', class: 'btn btn-success' %></td>
         </tr>
       </table>
     </div>
