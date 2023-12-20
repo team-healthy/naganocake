@@ -20,7 +20,7 @@
         </tr>
         <!--<#%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>-->
         <tr>
-          <td><%= f.select :amount, options_for_select(*[1..20]) %></td>
+          <td><%= f.select :amount, *[1..20] %></td>
           <td><%= f.submit 'カートに入れる', class: 'btn btn-success' %></td>
         </tr>
         <!--<#% end %>-->

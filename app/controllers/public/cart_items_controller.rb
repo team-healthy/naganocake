@@ -5,6 +5,7 @@ class Public::CartItemsController < ApplicationController
   def index
   	@cart_item = CartItem.new
     @cart_items = current_customer.cart_items
+    @total = 0
   end
 
   def create
@@ -23,7 +24,7 @@ class Public::CartItemsController < ApplicationController
 
   def update
   	cart_item = CartItem.find(params[:id])
-  	cart_item.update(cart_item_params)
+  	cart_item.update(amount: @cart_item_exist.amount)
   	redirect_to cart_items_path
   end
 
