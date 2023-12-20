@@ -1,9 +1,9 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
 
+# 注文情報入力画面
   def new
     @order = Order.new
-    @addresses = Address.all
   end
 
    def confirm
@@ -22,21 +22,24 @@ class Public::OrdersController < ApplicationController
         case @address_type
         when "member_address"
         @selected_address = current_customer.post_code + " " + current_customer.address + " " + current_customer.last_name + current_customer.first_name
+
         when "registered_address"
-      #   unless params[:order][:registered_address_id] == ""
-      #     selected = Address.find(params[:order][:registered_address_id])
-      #     @selected_address = selected.post_code + " " + selected.address + " " + selected.name
-  	   # else
-  	   #render :new
-  	   # end
+        unless params[:order][:registered_address_id] == ""
+          selected = Address.find(params[:order][:registered_address_id])
+          @selected_address = selected.post_code + " " + selected.address + " " + selected.name
+  	    else
+  	   render :confirm
+  	    end
+
         when "new_address"
         unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
   	      @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
   	    else
-  	  render :new
+  	  render :confirm
   	    end
      end
     end
+
 
     def create
       @order = Order.new
@@ -62,16 +65,19 @@ class Public::OrdersController < ApplicationController
       @order.post_code = current_customer.post_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
+      @selected_address = "#{@order.post_code} #{@order.address}"
     when "registered_address"
       Address.find(params[:order][:registered_address_id])
       selected = Address.find(params[:order][:registered_address_id])
       @order.post_code = selected.post_code
       @order.address = selected.address
       @order.name = selected.name
+      @selected_address = "#{@order.post_code} #{@order.address}"
     when "new_address"
       @order.post_code = params[:order][:new_post_code]
       @order.address = params[:order][:new_address]
       @order.name = params[:order][:new_name]
+      @selected_address = "#{@order.post_code} #{@order.address}"
     end
 
     if @order.save
@@ -85,9 +91,10 @@ class Public::OrdersController < ApplicationController
         end
       end
       @cart_items.destroy_all
-      redirect_to complete_orders_path
+      redirect_to orders_complete_path
     else
-      render :items
+      flash.now[:alert] = "注文に失敗しました。必要な情報を入力してください。"
+      render :confirm
     end
   end
 

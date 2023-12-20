@@ -49,7 +49,7 @@
 
     <h4>お届け先</h4><%= "〒"+ @selected_address %>
 
-    <%= form_with url: orders_path, method: :post do %>
+    <%= form_with url:  orders_complete_path, method: :get do %>
 
       <%= hidden_field_tag 'order[payment_method]', @selected_payment_method %>
       <%= hidden_field_tag 'order[address_type]', @address_type %>

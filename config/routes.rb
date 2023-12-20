@@ -33,9 +33,9 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :orders, only: [:new, :index, :show]
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/complete' => 'orders#complete'
+    resources :orders, only: [:new, :index, :show]
     post 'orders' => 'orders#create'
   end
 
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     get 'customers/confirm_withdraw' => 'customers#confirm_withdraw'
     patch 'customers/withdraw' => 'customers#withdraw'
     resources :customers, only: [:edit, :show, :update]
-    
+
   end
 
   scope module: :public do
