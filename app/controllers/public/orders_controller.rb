@@ -8,16 +8,18 @@ class Public::OrdersController < ApplicationController
 
    def confirm
       @cart_items = CartItem.where(customer_id: current_customer.id)
+      #@cart_items = current_customer.cart_items
       @shipping_cost = 800 #送料は800円で固定
       @selected_payment_method = params[:order][:payment_method]
       #以下、商品合計額の計算
       ary = []
       @cart_items.each do |cart_item|
-        ary << cart_item.item.price*cart_item.quantity
+        ary << cart_item.item.price*cart_item.amount
       end
       @cart_items_price = ary.sum
-
       @total_price = @shipping_cost + @cart_items_price
+
+
       @address_type = params[:order][:address_type]
         case @address_type
         when "member_address"
@@ -48,7 +50,7 @@ class Public::OrdersController < ApplicationController
       @cart_items = CartItem.where(customer_id: current_customer.id)
       ary = []
       @cart_items.each do |cart_item|
-        ary << cart_item.item.price*cart_item.quantity
+        ary << cart_item.item.price*cart_item.amount
       end
       @cart_items_price = ary.sum
       @order.total_payment = @order.shipping_cost + @cart_items_price
@@ -83,11 +85,11 @@ class Public::OrdersController < ApplicationController
     if @order.save
       if @order.status == 0
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, amount: cart_item.amount, making_status: 0)
         end
       else
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 1)
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, amount: cart_item.amount, making_status: 1)
         end
       end
       @cart_items.destroy_all
