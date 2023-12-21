@@ -19,31 +19,19 @@
             
             
             <h4>新着商品</h4>
-            
             <% @new_items.each do |item| %>
-              <% if item.image.present? %>
-                <tr>
-                  <td>
-                    <%= link_to item_path(item) do %>
-                      <%= image_tag item.image, size: "50x50" %>
-                    <% end %>
-                  </td>
-                  <td><%= link_to item.name, item %></td>
-                  <td>¥<%= item.with_tax_price.to_s(:delimited) %></td>
-                </tr>
-              <% else %>
-                <tr>
-                  <td>
-                    <%= link_to item_path(item) do %>
-                      <%= image_tag 'no.image', size: "50x50" %>
-                    <% end %>
-                  </td>
-                  <td><%= link_to item.name, item %></td>
-                  <td>¥<%= item.with_tax_price.to_s(:delimited) %></td>
-                </tr>
-              <% end %>
+                  <tr>
+                    <td>
+                         <!--<#%= image_tag item.get_image(50,50) %>-->
+                        <%= link_to item_path(item.id) do %>
+                          <%= image_tag item.image, size: "50x50" %>
+                        <% end %>
+                    </td>
+                    <td><%= link_to item.name,item %></td>
+                    <td>¥<%= item.with_tax_price.to_s(:delimited) %></td>
             <% end %>
-                   
+                    
+                    
            <div class="ml-auto">
 　　　　　　<%= link_to "すべての商品を見る>", items_path, class: "mr-auto" %>
             </div>
