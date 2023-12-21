@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :price, presence: true
   # validates :is_active, presence: true
 
-  enum is_active: {販売中:0, 販売停止中:1}
+  
 
   # 消費税を求めるメソッド
   def with_tax_price

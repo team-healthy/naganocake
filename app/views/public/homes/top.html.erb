@@ -1,9 +1,41 @@
-<h1>home/top</h1>
+<div class='container px-5 px-sm-0'>
+   <div class='row'>
+     <div class='col-md-3'>
+     </div>
+     <div class='col-md-8 offset-md-1'>
+          <div class="text-center" style=" font-size:20px; background-image: url('<%= asset_path('naganocake.jpg') %>'); background-size: cover; height: 400px;">
+                <div class="d-flex align-items-center justify-content-center" style="wifth: 1200px; height: 400px;">
+                    <div style="background-color: rgba(255,255,255,.5);">
+                        <p>ようこそ、ながのCAKEへ！<br>
+                      このサイトは、ケーキ販売のECサイトになります。<br>
+                      会員でない方も商品の閲覧はできますが、<br>
+                      購入には会員登録が必要になります。</p>
+                    </div>
+                </div>
+            </div>
+         
+                    
+                                        
+            
+            
+            <h4>新着商品</h4>
+            <% @new_items.each do |item| %>
+                  <tr>
+                    <td>
+                         <!--<#%= image_tag item.get_image(50,50) %>-->
+                        <%= link_to item_path(item.id) do %>
+                          <%= image_tag item.image, size: "50x50" %>
+                        <% end %>
+                    </td>
+                    <td><%= link_to item.name,item %></td>
+                    <td>¥<%= item.with_tax_price.to_s(:delimited) %></td>
+            <% end %>
+                    
+                    
+           <div class="ml-auto">
+　　　　　　<%= link_to "すべての商品を見る>", items_path, class: "mr-auto" %>
+            </div>
 
-
-
-
-<p>ようこそ、ながのCAKEへ！</p>
-<p>このサイトは、ケーキ販売のECサイトになります。</p>
-<p>会員でない方も商品の閲覧はできますが、</p>
-<p>購入には会員登録が必要になります。</p>
+  
+  </div>
+</div>
