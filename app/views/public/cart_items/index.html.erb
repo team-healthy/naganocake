@@ -4,6 +4,9 @@
     <div class="col">
       <h4>ショッピングカート</h4>
     </div>
+    <div class="col">
+      <%= link_to 'カートを空にする', 'cart_items', method: :delete, "data-confirm" => "本当に消しますか?", class: 'btn btn-danger' %>
+    </div>
   </div>
 
   <table border="1">
