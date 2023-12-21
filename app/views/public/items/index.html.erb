@@ -6,7 +6,7 @@
   <div class="row">
     <% @items.each do |item| %>
       <%= link_to item_path(item) do %>
-        <p><%= image_tag item.image, size: "200x150" %></p>
+        <p><%= image_tag(item.get_image(200,150)) %></p>
       <% end %>
       <p><%= link_to item.name, item_path(item) %></p>
       <p>¥<%= item.with_tax_price.to_s(:delimited) %></p>
