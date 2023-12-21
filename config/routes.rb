@@ -33,15 +33,18 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    resources :orders, only: [:new, :index, :show]
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/complete' => 'orders#complete'
+    get  "orders/confirm" => redirect("orders/complete")
     post 'orders' => 'orders#create'
+    resources :orders, only: [:new, :index, :show]
+
   end
 
   scope module: :public do
-    resources :cart_items, only: [:index, :create, :update, :destroy]
     delete 'cart_items' => 'cart_items#destroy_all'
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+
   end
 
   scope module: :public do

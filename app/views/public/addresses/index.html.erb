@@ -4,19 +4,19 @@
 
     <%= form_with model: @address, url: addresses_path do |f|  %>
     　<div>
-      <%= f.label :post_code, "郵便番号(ハイフンなし)",class: "col-3" %>
-      <%= f.text_field :post_code,class: "col-3" %>
+      <%= f.label :post_code, "郵便番号(ハイフンなし)", class: "col-3" %>
+      <%= f.text_field :post_code, placeholder: "0000000", class: "col-3" %>
       </div>
       <div>
       <%= f.label :address, "住所",class: "col-3" %>
-      <%= f.text_field :address,class: "col-6" %>
+      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "col-6" %>
       </div>
       <div>
         <%= f.hidden_field :customer_id, value: current_customer.id %>
       </div>
       <div>
       <%= f.label :name, "宛名",class: "col-3" %>
-      <%= f.text_field :name,class: "col-3" %>
+      <%= f.text_field :name, placeholder: "令和道子", class: "col-3" %>
       <%= f.submit "新規登録",class: "btn btn-success text-center" %>
       </div>
 
@@ -42,7 +42,7 @@
             <td><%= address.name %></td>
             <td>
                 <!--id必要  edit_public_address_path-->
-                <%= link_to "編集する", edit_address_path(address.id),method: :get , class: "btn btn-primary" %>　　<%= link_to "削除する", address_path(address.id), method: :delete , class: "btn btn-danger" %><!-- pathにid必要 public_address_path-->
+                <%= link_to "編集する", edit_address_path(address.id),method: :get , class: "btn btn-success text-center" %>　　<%= link_to "削除する", address_path(address.id), method: :delete , class: "btn btn-danger" %><!-- pathにid必要 public_address_path-->
             </td>
         </tr>
         <% end %>
