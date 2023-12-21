@@ -24,7 +24,7 @@
       <td><%= cart_item.item.name %></td>
       <td><%= (cart_item.item.with_tax_price.to_s(:delimited)) %></td>
       <td>
-        <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
+        <%= form_with model: cart_item do |f| %>
         <div class="row">
           <div class="col">
             <%= f.select :amount, *[1..20] %>
