@@ -20,15 +20,18 @@
             
             <h4>新着商品</h4>
             <% @new_items.each do |item| %>
+            　   <% if item.is_active %>
                   <tr>
                     <td>
-                         <!--<#%= image_tag item.get_image(50,50) %>-->
+                        
                         <%= link_to item_path(item.id) do %>
+                          <!--<#%= image_tag item.get_image(50,50) %>-->
                           <%= image_tag item.image, size: "50x50" %>
                         <% end %>
                     </td>
                     <td><%= link_to item.name,item %></td>
                     <td>¥<%= item.with_tax_price.to_s(:delimited) %></td>
+                 <% end %>  
             <% end %>
                     
                     

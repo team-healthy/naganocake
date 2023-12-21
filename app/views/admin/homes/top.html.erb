@@ -19,16 +19,19 @@
               </thead>
               <tbody>
              
-                 <% @order_details.each do |order_detail| %>
+                 <% @orders.each do |order| %>
                  
                       <tr>
-                        <td><%= order_detail.created_at %></td>
+                        <td><%= order.created_at %></td>
                         <td>
-                            <% customer = order_detail.order.customer %>
+                            <% customer = order.customer %>
                             <%= customer.last_name %>
                             <%= customer.first_name %>
                         </td>
-                        <td><%= order_detail.amount %></td>
+                        <td>
+                        <!--もし注文の詳細が存在する場合、最初の注文の詳細の`amount`を取得-->
+                        <%= order.order_details.first&.amount %>
+                        </td>
                         <td></td>
                         
                       </tr>
