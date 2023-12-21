@@ -29,7 +29,7 @@
     <table class="table">
       <tr>
         <td>商品合計</td>
-        <!--<td><%#= @order.total_payment - @order.shipping_cost %></td>-->
+       
         <td><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %></td>
       </tr>
       <tr>
