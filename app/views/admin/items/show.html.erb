@@ -12,7 +12,7 @@
   <%= form_with model: @item do |f| %>
   <div class="row">
     <div class="col-md-3">
-      <td><%= image_tag @item.image, size: "350x300" %><td>
+      <td><%= image_tag(@item.get_image(350,300)) %><td>
     </div>
 
     <div class="col-md-8 offset-md-1">
