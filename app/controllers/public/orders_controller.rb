@@ -94,7 +94,7 @@ class Public::OrdersController < ApplicationController
       redirect_to orders_complete_path
     else
       flash.now[:alert] = "注文に失敗しました。必要な情報を入力してください。"
-      render :confirm
+      render :new
     end
   end
 
