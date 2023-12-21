@@ -1,44 +1,24 @@
 class Admin::OrdersController < ApplicationController
-  before_action :authenticate_admin!
-  
- 
-   def index
-      if params[:customer_id]
-         orders = Order.where(customer_id: params[:customer_id])
-         @index_orders = orders.order(created_at: "DESC").page(params[:page])
-      elsif params[:created_at]
-         orders = Order.created_today
-         @index_orders = orders.order(created_at: "DESC").page(params[:page])
-      elsif params[:status] == "not"
-         orders = Order.where.not(order_status: 0).where.not(order_status: 4)
-         @index_orders = orders.order(created_at: "DESC").page(params[:page])
-      else
-         @index_orders = Order.order(created_at: "DESC").page(params[:page])
-      end
-   end
+  def show
+    @order = Order.find(params[:id])
+    @customer = @order.customer
+    @order_details = @order.order_details
+  end
 
-   def show
-   	@order = Order.find(params[:id])
-   	@order_items = OrderItem.where(order_id:[@order.id])
-   end
+  def update
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details
+    if @order.update(order_params)
+      @order_details.update_all(production_status: "production_pending") if @order.order_status == "payment_confirmation"
+      redirect_to admin_order_path(@order.id)
+    else
+      render :show
+    end
+  end
 
-   def update
-   	@order = Order.find(params[:id])
-      @order_items = OrderItem.where(order_id: [@order.id])
-      @order.update(order_params)
-      if params[:order][:order_status] == "入金確認"
-         @order_items.each do |order_item|
-            order_item.update!(create_status: 1)
-         end
-      end
-      redirect_to admin_order_path(@order)
-   end
+  private
 
-   private
-   def order_params
-      params.require(:order).permit(:customer_id, :postcode, :address, :payment_method, :order_status, :postage, :payment)
-   end
-
-end
-
+  def order_params
+    params.require(:order).permit(:customer_id, :postage, :payment_method, :payment_total, :order_status, :name, :postal_code, :address)
+  end
 end

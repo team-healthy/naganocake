@@ -14,7 +14,7 @@ class Public::OrdersController < ApplicationController
       #以下、商品合計額の計算
       ary = []
       @cart_items.each do |cart_item|
-        ary << cart_item.item.price*cart_item.amount
+        ary << cart_item.item.with_tax_price*cart_item.amount
       end
       @cart_items_price = ary.sum
       @total_price = @shipping_cost + @cart_items_price
@@ -103,11 +103,13 @@ class Public::OrdersController < ApplicationController
 
     def index
       @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
+     
     end
 
     def show
       @order = Order.find(params[:id])
-       @order_details= OrderDetail.where(order_id: @order.id)
+      @order_details= OrderDetail.where(order_id: @order.id)
+      @total_item_amount = @order_details.sum { |order_detail| order_detail.add_sub_total }
     end
 
     def complete
