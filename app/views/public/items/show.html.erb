@@ -2,7 +2,7 @@
 <%= f.hidden_field :item_id, :value => @item.id %>
   <div class="row">
     <div class="col-md-3">
-      <td><%= image_tag @item.image, size: "250x200" %><td>
+      <%= image_tag(@item.get_image(250,200)) %>
     </div>
 
     <div class="col-md-8">
