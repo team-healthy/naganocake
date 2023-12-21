@@ -1,6 +1,7 @@
 <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
 <%= f.hidden_field :item_id, :value => @item.id %>
-  <div class="row">
+<!--<div class="container justify-content-center">-->
+  <div class="row justify-content-center">
     <div class="col-md-3">
       <%= image_tag(@item.get_image(250,200)) %>
     </div>
@@ -8,7 +9,9 @@
     <div class="col-md-8">
       <table class="table table-borderless">
         <tr>
-          <td><%= @item.name %></td>
+          <td>
+            <h3><strong><%= @item.name %></strong></h3>
+          </td>
         </tr>
         <tr>
           <td><%= @item.introduction %></td>
@@ -16,17 +19,18 @@
         <tr></tr>
         <tr>
           <!--税率を変更する場合はモデルの変更だけでOK。"delimited"は数値を3桁区切りにしてる。-->
-          <td>¥<%= @item.with_tax_price.to_s(:delimited) %> (税込)</td>
+          <td>
+            <strong>¥<%= @item.with_tax_price.to_s(:delimited) %></strong>  (税込)
+          </td>
         </tr>
-        <!--<#%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>-->
         <tr>
           <td><%= f.select :amount, *[1..20] %></td>
           <td><%= f.submit 'カートに入れる', class: 'btn btn-success' %></td>
         </tr>
-        <!--<#% end %>-->
       </table>
     </div>
   </div>
+<!--</div>-->
 <% end %>
 
 
