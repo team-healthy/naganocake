@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WorkGithub</title>
+    <title>NaganoCake</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,31 +16,42 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
    
     <div class="container">
-      <a class="navbar-brand" href="/" ><span>Nagano Cake</span></a>
+      <% if admin_signed_in? %>
+       <a class="navbar-brand" href="/admin" ><span>Nagano Cake</span></a>
+      <% else %>
+       <a class="navbar-brand" href="/" ><span>Nagano Cake</span></a>
+      <% end %> 
+       
         <ul class="navbar-nav ml-auto">
+          
           
         <!--<p>ようこそ<#%= current_customer.last_name %>さん！</p>-->
           
         <% if admin_signed_in? %>
           <% if request.fullpath.include? "/admin" %>
            <!--admin側ログイン後のheaderを返す-->
+           <li>
+              <%= link_to admin_items_path,class: "btn btn-secondary" do %>
+                商品一覧
+              <% end %>
+            </li>
             <li>
               <%= link_to admin_customers_path,class: "btn btn-secondary" do %>
                 会員一覧
               <% end %>
             </li>
             <li>
-              <%=  link_to admin_root_path,class: 'nav-link text-black' do %>
+              <%=  link_to admin_root_path,class: "btn btn-secondary" do %>
                 注文履歴一覧
               <% end %>
             </li>
             <li>
-              <%=  link_to admin_genres_path,class: 'nav-link text-black' do %>
+              <%=  link_to admin_genres_path,class: "btn btn-secondary" do %>
                 ジャンル一覧
               <% end %>
             </li>
             <li>
-              <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-black' do %>
+              <%= link_to destroy_admin_session_path, method: :delete,class: "btn btn-secondary" do %>
                 ログアウト
               <% end %>
             </li>
