@@ -2,9 +2,6 @@ class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @shipping_cost = 800
-    # tax = 1.1
-    # @total_payment_with_tax = (@order.total_payment - @shipping_cost) * tax
-    # @total_payment_with_tax = @order.total_payment.with_tax_price
     @customer = @order.customer
     @order_details = @order.order_details
   end

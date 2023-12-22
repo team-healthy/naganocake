@@ -8,23 +8,23 @@ class Admin::OrderDetailsController < ApplicationController
 
     is_updated = true
     if @order_detail.update(order_detail_params)
-      @order.update(order_status: 'now_making') if @order_detail.production_status == 'in_production'
-      @order_details.each do |order_detail|
-        if order_detail.production_status != 'complete'
-          is_updated = false
-        end
-      end
-      @order.update(order_status: 'preparing_for_shipment') if is_updated
-      redirect_to admin_order_path(@order.id)
-    else
-      render "admin/orders/show"
+      @order.update(order_making_status: 'now_making') if @order_detail.making_status == 'in_production'
+  #     @order_details.each do |order_detail|
+  #       if order_detail.making_status != 'complete'
+  #         is_updated = false
+  #       end
+  #     end
+  #     @order.update(order_status: 'preparing_for_shipment') if is_updated
+  #     redirect_to admin_order_path(@order.id)
+  #   else
+  #     render "admin/orders/show"
     end
   end
 
   private
 
   def order_detail_params
-    params.require(:order_detail).permit(:status)
+    params.require(:order_detail).permit(:making_status, :order_id, :item_id, :price, :amount)
   end
 
 
