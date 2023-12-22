@@ -1,6 +1,9 @@
-<div class='container px-5 px-sm-0'>
+<div class='container px-5 px-sm-3'>
    <div class='row'>
-     <div class='col-md-3'>
+     <div class='col-3'>
+          <div class="col-md-10">
+          <%= render 'layouts/genre', genres: @genres %>
+         </div>
      </div>
      <div class='col-md-8 offset-md-1'>
           <div class="text-center" style=" font-size:20px; background-image: url('<%= asset_path('naganocake.jpg') %>'); background-size: cover; height: 400px;">
@@ -12,33 +15,40 @@
                       購入には会員登録が必要になります。</p>
                     </div>
                 </div>
-            </div>
-         
-                    
-                                        
+           
             
+        
+                            
+         </div>    
             
             <h4>新着商品</h4>
-            <% @new_items.each do |item| %>
-            　   <% if item.is_active %>
-                  <tr>
-                    <td>
-                        
-                        <%= link_to item_path(item.id) do %>
-                          <!--<#%= image_tag item.get_image(50,50) %>-->
-                          <%= image_tag item.image, size: "50x50" %>
-                        <% end %>
-                    </td>
-                    <td><%= link_to item.name,item %></td>
-                    <td>¥<%= item.with_tax_price.to_s(:delimited) %></td>
-                 <% end %>  
-            <% end %>
+            <div class = "d-flex justify-content-around">
+             <div class="search-items d-flex flex-wrap">
+                <% @new_items.each do |item| %>
+                　   <% if item.is_active %>
+                      <tr>
+                        <td>
+                            
+                            <%= link_to item_path(item.id) do %>
+                              <!--<#%= image_tag item.get_image(50,50) %>-->
+                              <%= image_tag item.image, size: "70x70" %>
+                            <% end %>
+                        </td>
+                        <div class="bg-white d-block mr-3 ml-3 " >
+                        <p><%= link_to item.name,item %></p>
+                        <p>¥<%= item.with_tax_price.to_s(:delimited) %></p>
+                        </div>
+                     <% end %>  
+                <% end %>
+             
+                
                     
-                    
-           <div class="ml-auto">
-　　　　　　<%= link_to "すべての商品を見る>", items_path, class: "mr-auto" %>
-            </div>
-
+                <div class="ml-auto">
+    　　　     　　　<%= link_to "すべての商品を見る>", items_path %>
+                </div>
+           </div>
+          </div>     
+                
   
   </div>
 </div>
