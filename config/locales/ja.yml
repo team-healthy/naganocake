@@ -6,17 +6,17 @@ ja:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
       status:
-          wait_payment: "入金待ち"
-          confirm_payment: "入金確認"
-          making: "製作中"
-          preparing_ship: "発送準備中"
-          finish_prepare: "発送済み"
+        wait_payment: "入金待ち"
+        confirm_payment: "入金確認"
+        making: "製作中"
+        preparing_ship: "発送準備中"
+        finish_prepare: "発送済み"
     order_details:
-          making_unable: "製作不可"
-          waiting_for_making: "製作待ち"
-          in_making: "製作中"
-          making_completed: "製作完了" 
-
+      making_status:
+        making_unable: "製作不可"
+        waiting_for_making: "製作待ち"
+        in_making: "製作中"
+        making_completed: "製作完了"
 
   activerecord:
     errors:

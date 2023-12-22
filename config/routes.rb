@@ -25,6 +25,14 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :orders, only: [:show, :update]
+  end
+
+  namespace :admin do
+    resources :order_details, only: [:update]
+  end
+
+  namespace :admin do
     root to: 'homes#top'
   end
 
