@@ -13,7 +13,9 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def create
   #   super
   # end
-
+  def after_sign_in_path_for(resource)
+    customer_path(current_customer)
+  end
   # GET /resource/edit
   # def edit
   #   super
