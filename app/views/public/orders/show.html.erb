@@ -29,7 +29,8 @@
     <table class="table">
       <tr>
         <td>商品合計</td>
-        <td><%= @order.total_payment %></td>
+       
+        <td><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %></td>
       </tr>
       <tr>
         <td>配送料</td>
@@ -37,7 +38,9 @@
       </tr>
       <tr>
         <td>ご請求額</td>
-        <td><%= @order.total_payment + @order.shipping_cost %></td>
+        <td><%= @order.total_payment.to_s(:delimited) %></td>
+
+
       </tr>
     </table>
 
@@ -52,9 +55,10 @@
       <% @order_details.each do |order_detail| %>
         <tr>
           <td><%= order_detail.item.name %></td>
-          <td><%= order_detail.item.price %></td>
+          <td><%= order_detail.item.with_tax_price.to_s(:delimited) %></td>
           <td><%= order_detail.amount %></td>
-          <td><%= order_detail.amount * order_detail.item.price %></td>
+          <!--<td><%#= order_detail.amount * order_detail.item.with_tax_price.to_i(:delimited) %></td>-->
+          <td><%= order_detail.amount * order_detail.item.with_tax_price.to_s.gsub(",", "").to_i %></td>
         </tr>
       <% end %>
     </table>
