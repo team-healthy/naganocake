@@ -1,18 +1,16 @@
 <div class="container justify-content-center">
   <div class="row">
-    <!--<table class="table table-borderless">-->
     <div class="col mt-3 mb-3">
       <h4>ショッピングカート</h4>
     </div>
     <div class="col d-flex justify-content-end mt-3 mb-3">
       <%= link_to 'カートを空にする', 'cart_items', method: :delete, "data-confirm" => "カート内商品を全て削除しますか?", class: 'btn btn-danger' %>
     </div>
-    <!--</table>-->
   </div>
 
   <div class="row d-flex justify-content-center">
-  <table border="1" class="col">  <!--width="700"-->
-    <tr bgcolor="lemonchiffon">
+  <table border="1" class="col">
+    <tr bgcolor="wheat" height="60">
       <th>商品名</th>
       <th>単価（税込）</th>
       <th>数量</th>
@@ -22,26 +20,24 @@
 
     <% @cart_items.each do |cart_item| %>
     <% @total = @total + cart_item.subtotal %>
-    <tr>
+    <tr height="60">
       <td>
-        <%= image_tag(cart_item.item.get_image(70,60)) %>
+        <%= image_tag(cart_item.item.get_image(80,70)) %>
         <strong><%= cart_item.item.name %></strong>
       </td>
       <td><%= (cart_item.item.with_tax_price.to_s(:delimited)) %></td>
       <td>
         <%= form_with model: cart_item do |f| %>
-        <div class="row">
-          <div class="col">
-            <%= f.select :amount, *[1..20] %>
-          </div>
-          <div class="col">
-            <%= f.submit '変更', class: 'btn btn-success btn-xs' %>
-          </div>
+        <div class="row justify-content-center">
+          <%= f.select :amount, *[1..20]%>
+          <%= f.submit '変更', class: 'btn btn-success btn-xs' %>
         </div>
         <% end %>
       </td>
-      <td><%= cart_item.subtotal.to_s(:delimited) %></td>
-      <td><%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, class: 'btn btn-danger' %></td>
+      <td><%= cart_item.subtotal.to_s(:delimited)%></td>
+      <td class="text-center">
+        <%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, class: 'btn btn-danger col-8' %>
+      </td>
     </tr>
     <% end %>
   </table>
@@ -53,9 +49,9 @@
     </div>
 
     <div class="col d-flex justify-content-end">
-      <table border="1" width="200">
+      <table border="1" class="col-3 mb-3">
         <tr>
-          <td><strong>合計金額</strong></td>
+          <td bgcolor="wheat"><strong>合計金額</strong></td>
           <td><%= @total.to_s(:delimited) %></td>
         </tr>
       </table>

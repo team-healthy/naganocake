@@ -1,15 +1,15 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row">
-    <div class="col">
+    <div class="col mt-5 mb-4">
       <h4>商品一覧</h4>
     </div>
-    <div class="col">
-      <h1><%= link_to '+', new_admin_item_path, class: 'btn btn-outline-dark, rounded-circle'%></h1>
+    <div class="col mt-5 d-flex justify-content-end">
+      <h1><%= link_to '+', new_admin_item_path, class: 'btn btn-lg btn-outline-dark border border-dark rounded-circle'%></h1>
     </div>
   </div>
 
-  <table>
-    <thead class="table-active">
+  <table class="col">
+    <thead bgcolor="wheat" class="table">
       <tr>
         <th>商品ID</th>
         <th>商品名</th>
@@ -23,7 +23,7 @@
       <tr>
         <td><%= item.id %></td>
         <td>
-          <%= link_to admin_item_path(item), class: "link-dark link-underline-dark" do %>
+          <%= link_to admin_item_path(item), class: "link link-dark link-underline-dark" do %>
             <%= item.name %>
           <% end %>
         </td>
@@ -36,11 +36,6 @@
             <span class="text-secondary">販売停止中</span>
           <% end %>
         </td>
-        
-        
-        
-        
-        
       </tr>
     </tbody>
     <% end %>
