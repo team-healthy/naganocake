@@ -17,7 +17,7 @@
       <div>
       <%= f.label :name, "宛名",class: "col-3" %>
       <%= f.text_field :name, placeholder: "令和道子", class: "col-3" %>
-      <%= f.submit "新規登録",class: "btn btn-success text-center" %>
+      <%= f.submit "新規登録",class: "btn btn-info text-center" %>
       </div>
 
      <% end %>
@@ -42,7 +42,7 @@
             <td><%= address.name %></td>
             <td>
                 <!--id必要  edit_public_address_path-->
-                <%= link_to "編集する", edit_address_path(address.id),method: :get , class: "btn btn-success text-center" %>　　<%= link_to "削除する", address_path(address.id), method: :delete , class: "btn btn-danger" %><!-- pathにid必要 public_address_path-->
+                <%= link_to "編集する", edit_address_path(address.id),method: :get , class: "btn btn-info text-center" %>　　<%= link_to "削除する", address_path(address.id), method: :delete , class: "btn btn-danger" %><!-- pathにid必要 public_address_path-->
             </td>
         </tr>
         <% end %>
