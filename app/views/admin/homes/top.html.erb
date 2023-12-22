@@ -20,21 +20,36 @@
               <tbody>
              
                  <% @orders.each do |order| %>
-                 
-                      <tr>
-                        <td><%= order.created_at %></td>
-                        <td>
-                            <% customer = order.customer %>
-                            <%= customer.last_name %>
-                            <%= customer.first_name %>
-                        </td>
-                        <td>
-                        <!--もし注文の詳細が存在する場合、最初の注文の詳細の`amount`を取得-->
-                        <%= order.order_details.first&.amount %>
-                        </td>
-                        <td></td>
-                        
-                      </tr>
+         
+              <tr>
+                <td><%= order.created_at %>
+                    <!--<#%= link_to order.created_at.in_time_zone("Tokyo").strftime("%Y/%m/%d %H:%M"), admin_order_path(order.id) %>-->
+                </td>
+                <td>
+                    <% customer = order.customer %>
+                    <%= customer.last_name %>
+                    <%= customer.first_name %>
+                </td>
+                <td>
+                <!--注文の注文個数を表示-->
+                <%= order.order_details.sum(:amount) %>
+                </td>
+                <%= order.status_i18n %>
+                <!--<td>-->
+                <!--<#% if order.order_status == "waiting_for_payment" %>-->
+                <!--  <p>入金待ち</p>-->
+                <!--<#% elsif order.order_status == "payment_confirmation" %>-->
+                <!--  <p>入金確認</p>-->
+                <!--<#% elsif order.order_status == "in_production" %>-->
+                <!--  <p>制作中</p>-->
+                <!--<#% elsif order.order_status == "preparation_for_shipping" %>-->
+                <!--   <p>発送準備</p>-->
+                <!--<#% else %>-->
+                <!--  <p>発送済み</p>-->
+                <!--<#% end %>-->
+                <!--</td>-->
+                
+              </tr>
                  <% end %>
                     
               </tbody>     
