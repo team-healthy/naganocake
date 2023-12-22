@@ -10,7 +10,7 @@ class Public::CartItemsController < ApplicationController
 
   def create
   	@cart_item = CartItem.new(cart_item_params)
-  	 #カートにすでに商品が入っていた場合
+  	#カートにすでに商品が入っていた場合
   	if @cart_item_exist = CartItem.find_by(item_id: @cart_item.item_id, customer_id: current_customer)
   	  @cart_item_exist.amount = @cart_item_exist.amount.to_i + @cart_item.amount.to_i
   	  @cart_item_exist.update(amount: @cart_item_exist.amount)

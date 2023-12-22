@@ -12,14 +12,14 @@ class Item < ApplicationRecord
   validates :price, presence: true
   # validates :is_active, presence: true
 
-  
+
 
   # 消費税を求めるメソッド
   def with_tax_price
     (price * 1.1).floor
   end
 
-  
+
 
   def get_image(width, height)
     unless image.attached?

@@ -9,7 +9,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      flash[:notice] = "新規登録に成功しました"
+      flash[:notice] = "商品の登録に成功しました"
       redirect_to admin_item_path(@item)
     else
       @items = Item.all
