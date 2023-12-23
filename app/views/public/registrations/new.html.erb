@@ -94,17 +94,26 @@
                 <tr>
                   <td></td>
                   <td></td>
-                  <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+                  <td><%= f.submit "新規登録", class: "btn btn-info" %></td>
                   <td></td>
                   <td>
                   </td>
                 </tr>
+                <tr>
+                　<td>既に登録済みの方</td>
+                  <td><%= link_to "こちら", new_customer_session_path %>からログインしてください。</td>
+                </tr>
+                
               </tbody>
+              
+              
+              
+              
+              
             </table>
             
           <% end %>
-     　　　　 <p>既に登録済みの方</p>
-      <p><%= link_to "こちら", new_customer_session_path %>からログインしてください。</p>
+     
       </div>
     </div>
   </div>

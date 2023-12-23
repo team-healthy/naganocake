@@ -12,141 +12,21 @@
 
 
   <body>
-  <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!--ヘッダーの表示-->
+   <%= render 'layouts/header' %>
    
-    <div class="container">
-      <% if admin_signed_in? %>
-       <a class="navbar-brand" href="/admin" ><span>Nagano Cake</span></a>
-      <% else %>
-       <a class="navbar-brand" href="/" ><span>Nagano Cake</span></a>
-      <% end %> 
-       
-        <ul class="navbar-nav ml-auto">
-          
-          
-        <!--<p>ようこそ<#%= current_customer.last_name %>さん！</p>-->
-          
-        <% if admin_signed_in? %>
-          <% if request.fullpath.include? "/admin" %>
-           <!--admin側ログイン後のheaderを返す-->
-           <li>
-              <%= link_to admin_items_path,class: "btn btn-secondary" do %>
-                商品一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to admin_customers_path,class: "btn btn-secondary" do %>
-                会員一覧
-              <% end %>
-            </li>
-            <li>
-              <%=  link_to admin_root_path,class: "btn btn-secondary" do %>
-                注文履歴一覧
-              <% end %>
-            </li>
-            <li>
-              <%=  link_to admin_genres_path,class: "btn btn-secondary" do %>
-                ジャンル一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_admin_session_path, method: :delete,class: "btn btn-secondary" do %>
-                ログアウト
-              <% end %>
-            </li>
-           
-          <% else %>
-             <!--customer側ログイン後のheaderを返す-->
-            <li>
-              <%= link_to customer_path(current_customer),class: "btn btn-secondary" do %>
-                マイページ
-              <% end %>
-            </li>
-            <li>
-              <%=  link_to items_path,class: 'nav-link text-black' do %>
-                商品一覧
-              <% end %>
-            </li>
-            <li>
-              <%=  link_to cart_items_path ,class: 'nav-link text-black' do %>
-                カート
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-black' do %>
-                ログアウト
-              <% end %>
-            </li>
-         <% end %>
-        <% elsif customer_signed_in? %>
-        <!--customerログイン後のheaderを返す  -->
-            <li>
-              <%= link_to customer_path(current_customer),class: "btn btn-secondary" do %>
-                マイページ
-              <% end %>
-            </li>
-            <li>
-              <%=  link_to items_path,class: "btn btn-secondary" do %>
-                商品一覧
-              <% end %>
-            </li>
-            <li>
-              <%=  link_to cart_items_path ,class: "btn btn-secondary" do %>
-                カート
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_customer_session_path, method: :delete,class: "btn btn-secondary" do %>
-                ログアウト
-              <% end %>
-            </li>
-            
-         
-        <% else %>
-        <!--adminでもuserでもログインしていない時に表示するheaderのメニューを記載-->
-            <li>
-              <%= link_to home_about_path,class: "btn btn-secondary" do %>
-                 About
-              <% end %>
-            </li>
-            <li>
-              <%= link_to items_path,class: "btn btn-secondary" do %>
-                商品一覧
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_customer_registration_path,class: "btn btn-secondary" do %>
-                新規登録
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_customer_session_path ,class: "btn btn-secondary" do %>
-                ログイン
-              <% end %>
-            </li>
-      
-       <% end %>
-        </ul>
-        
-      </div>
-    </nav>
-  </header>
-
-  
-  
+   
+   
   <main>
     <%= yield %>
   </main>
  
-   
+ 
+ 
   <footer>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class='container mt-5'>
-    	<div class='row'>
-      </div>
+    <div class="fixed-bottom" style="background: #875647;">
+        <p class="text-center" style="color: white">team healthy</p>
    </div>
-   </nav>
   </footer>
  
  
