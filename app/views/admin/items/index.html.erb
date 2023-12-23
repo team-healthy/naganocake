@@ -4,7 +4,7 @@
       <h4>商品一覧</h4>
     </div>
     <div class="col mt-5 d-flex justify-content-end">
-      <h1><%= link_to '+', new_admin_item_path, class: 'btn btn-lg btn-outline-dark border border-dark rounded-circle'%></h1>
+      <h1><%= link_to '+', new_admin_item_path, class: 'btn btn-lg btn-outline-dark rounded-circle'%></h1>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
             }
           </style>
           <%= link_to admin_item_path(item), class: "text-dark link-underline-dark" do %>
-            <%= item.name %>
+            <strong><%= item.name %></strong>
           <% end %>
         </td>
         <td><%= item.price.to_s(:delimited) %></td>

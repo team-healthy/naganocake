@@ -1,12 +1,12 @@
 <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
 <%= f.hidden_field :item_id, :value => @item.id %>
-<!--<div class="container justify-content-center">-->
-  <div class="row justify-content-center">
+<div class="container d-flex justify-content-center">
+  <div class="row mt-4">
     <div class="col-md-3">
       <%= image_tag(@item.get_image(250,200)) %>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 offset-md-1">
       <table class="table table-borderless">
         <tr>
           <td>
@@ -23,14 +23,14 @@
             <strong>¥<%= @item.with_tax_price.to_s(:delimited) %></strong>  (税込)
           </td>
         </tr>
-        <tr>
-          <td><%= f.select :amount, *[1..20] %></td>
-          <td><%= f.submit 'カートに入れる', class: 'btn btn-success' %></td>
-        </tr>
       </table>
     </div>
+    <div class="col d-flex justify-content-center">
+      <%= f.select :amount, *[1..20] %>
+      <%= f.submit 'カートに入れる', class: 'btn btn-success' %>
+    </div>
   </div>
-<!--</div>-->
+</div>
 <% end %>
 
 
