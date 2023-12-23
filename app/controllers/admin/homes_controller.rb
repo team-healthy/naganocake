@@ -2,15 +2,12 @@ class Admin::HomesController < ApplicationController
   before_action :authenticate_admin!
   
   def top
-    @order_details　= OrderDetail.all
+    @orders = Order.all
   end
   
   
-  
-  
-  
-   def order_details_params
-      params.require(:order_detail).permit(:order_id, :item_id, :tax_included_price, :amount, :making_status)
+   def order_params
+      params.require(:order).permit(:post_code, :adress, :name, :shipping_cost, :total_payment, :payment_method, :status)
    end
   
   

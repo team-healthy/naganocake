@@ -19,20 +19,25 @@
               </thead>
               <tbody>
              
-                 <% @order_details.each do |order_detail| %>
-                 
-                      <tr>
-                        <td><%= order_detail.created_at %></td>
-                        <td>
-                            <% customer = order_detail.order.customer %>
-                            <%= customer.last_name %>
-                            <%= customer.first_name %>
-                        </td>
-                        <td><%= order_detail.amount %></td>
-                        <td></td>
-                        
-                      </tr>
-                 <% end %>
+                 <% @orders.each do |order| %>
+         
+                  <tr>
+                    <td>
+                        <%= link_to order.created_at.in_time_zone("Tokyo").strftime("%Y/%m/%d %H:%M"), admin_order_path(order.id) %>
+                    </td>
+                    <td>
+                        <% customer = order.customer %>
+                        <%= customer.last_name %>
+                        <%= customer.first_name %>
+                    </td>
+                    <td>
+                    <!--注文の注文個数を表示-->
+                    <%= order.order_details.sum(:amount) %>
+                    </td>
+                    <td><%= order.status_i18n %></td>
+                    
+                  </tr>
+                     <% end %>
                     
               </tbody>     
       </table>
