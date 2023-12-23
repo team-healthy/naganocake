@@ -1,15 +1,15 @@
 <div class='container px-5 px-sm-3'>
-   <div class='row'>
+   <div class='row m-1'>
      <div class='col-3'>
-          <div class="col-md-10">
+          <div class="md-5">
           <%= render 'layouts/genre', genres: @genres %>
          </div>
      </div>
-     <div class='col-md-8 offset-md-1'>
+     <div class='col-md-9 '>
           <div class="text-center" style=" font-size:20px; background-image: url('<%= asset_path('top.jpg') %>'); background-size: cover; height: 400px;">
                 <div class="d-flex align-items-center justify-content-center" style="wifth: 1200px; height: 400px;">
-                    <div style="background-color: rgba(255,255,255,.5);">
-                        <p>ようこそ、ながのCAKEへ！<br>
+                    <div style="background-color: rgba(255,255,255,.8);font-family:'Playfair Display', serif;">
+                      <p>ようこそ、ながのCAKEへ！<br>
                       このサイトは、ケーキ販売のECサイトになります。<br>
                       会員でない方も商品の閲覧はできますが、<br>
                       購入には会員登録が必要になります。</p>
@@ -21,17 +21,17 @@
                             
          </div>    
             
-            <h4>新着商品</h4>
+            <h5><strong>新着商品</strong></h5>
             <div class = "d-flex justify-content-around">
              <div class="search-items d-flex flex-wrap">
                 <% @new_items.each do |item| %>
                 　   <% if item.is_active %>
                       <tr>
                         <td>
-                            
                             <%= link_to item_path(item.id) do %>
-                              <!--<#%= image_tag item.get_image(50,50) %>-->
-                              <%= image_tag item.image, size: "70x70" %>
+                              <div class="hover-zoom">
+                                <%= image_tag item.image, size: "70x70" %>
+                              </div>
                             <% end %>
                         </td>
                         <div class="bg-white d-block mr-3 ml-3 " >
