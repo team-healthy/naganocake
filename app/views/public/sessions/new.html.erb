@@ -1,8 +1,8 @@
   
-  <div class="mx-auto" style="width: 200px;">
+  <div class="mx-auto" style="width: 300px;">
     <div>
-  
-      <h2>ログイン</h2>
+   <h5 class="font-weight-bold w-30 text-left ml-2">ログイン</h5>
+   
       <h6>会員の方はこちらからログイン</h6>
       
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -19,7 +19,7 @@
        
       
         <div class="actions">
-          <%= f.submit "ログイン", class: "btn btn-sm btn-primary"%>
+          <%= f.submit "ログイン", class: "btn btn-sm btn-info"%>
         </div>
       <% end %>
       
