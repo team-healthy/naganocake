@@ -60,8 +60,8 @@
             <th>製作ステータス</th>
           </tr>
         </thead>
-        <% @order.order_details.each do |order_detail| %>
-          <%#= form_with model: @order_detail, url: admin_order_detail_path(@order_detail.id), method: :patch do |f| %>
+        <% @order_details.each do |order_detail| %>
+          <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
             <tbody>
               <tr>
                 <td><%= order_detail.item.name %></td>
@@ -69,10 +69,10 @@
                 <td><%= order_detail.amount %></td>
                  <td><%= order_detail.amount * order_detail.item.with_tax_price.to_s.gsub(",", "").to_i %></td>
                 <!--<td><%#= order_detail.making_status %></td>-->
-                <!--<td><%#= f.select :making_status, OrderDetail.making_statuses.keys.map { |k| [t("enums.order_details.making_status.#{k}"), k] }, {}, class: "form-select form-select-lg" %>-->
-              <%= form_with model: @order_detail, url: admin_order_details_path(@order_detail.id), method: :patch, html: { class: "form-inline" } do |f| %>
-              <%= f.select :status, OrderDetail.statuses.keys.map { |k| [t("enums.order_detail.status.#{k}"), k] }, {}, class: "form-control mr-2" %>
-              <%= f.submit "更新", class: "btn btn-sm btn-success" %>
+                <td><%= f.select :making_status, OrderDetail.making_statuses.keys.map { |k| [t("enums.order_details.making_status.#{k}"), k] }, {}, class: "form-select form-select-lg" %>
+              <%#= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch, html: { class: "form-inline" } do |f| %>
+              <!--<td><%#= f.select :status, OrderDetail.making_statuses.keys.map { |k| [t("enums.order_detail.status.#{k}"), k] }, {}, class: "form-control mr-2" %>-->
+              <%#= f.submit "更新", class: "btn btn-sm btn-success" %>
                   <%= f.submit "更新", class:"btn btn-info ml-4" %>
                 </td>
               </tr>

@@ -5,7 +5,7 @@ class Admin::OrdersController < ApplicationController
     #@customer = @order.customer
     # @order_details = @order.order_details
     # @order_detail = OrderDetail.find(params[:id])
-    @order_details = OrderDetail.all
+    @order_details = @order.order_details
 
   end
 

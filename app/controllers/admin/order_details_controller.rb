@@ -5,8 +5,8 @@ class Admin::OrderDetailsController < ApplicationController
     @order_detail = OrderDetail.find(params[:id])
     #@order_detail.update(making_status: params[:order_detail][:making_status])
     @order = @order_detail.order
-    @order_detail.update(order_detail_params)
-    @order_details = order.order_details.all
+    #@order_detail.update(order_detail_params)
+    @order_details = @order.order_details.all
 
 
   #   if @order_detail.making_status == "in_making"
@@ -59,7 +59,7 @@ class Admin::OrderDetailsController < ApplicationController
   private
 
   def order_detail_params
-    params.require(:order_detail).permit(:making_status, :order_id, :item_id, :price, :amount, :status)
+    params.require(:order_detail).permit(:making_status)
   end
 
   # def is_making_completed(order)
