@@ -13,6 +13,10 @@ class Order < ApplicationRecord
  def add_sub_total
     (item.price * 1.10).floor * amount
   end
+  
+  def full_address
+    '〒' + ' ' + self.post_code + ' ' + self.address + ' ' + self.name
+  end
 
   #支払い方法
   enum payment_method: { credit_card: 0, transfer: 1 }

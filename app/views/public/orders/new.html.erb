@@ -3,10 +3,10 @@
 
   <div class="col-md-12">
 
-    <h3>注文情報入力</h3>
+    <h3><u>注文情報入力</u></h3>
     <%= form_with model: @order, url: orders_confirm_path, method: :post do |f|  %>
 
-    <h4>支払い方法</h4>
+    <h5><strong>支払い方法</strong></h5>
     <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
     <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
     <br>
@@ -14,7 +14,7 @@
     <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
 
     <div>
-    <h4>お届け先</h4>
+    <h5><strong>お届け先</strong></h5>
     <%= f.radio_button :address_type, "member_address", checked: true %>
     <%= f.label :address_type, "ご自身の住所" %></br>
     〒<%= current_customer.post_code + "　" + current_customer.address %></br>
@@ -25,22 +25,22 @@
     <%= f.radio_button :address_type, [:registered_address] %>
     <%= f.label :address_type, "登録済住所から選択" %></br>
     <%= f.select :registered_address_id, current_customer.addresses.all.map { |m| ["〒" + m.post_code+m.address+m.name, m.id] }, include_blank: "登録してある配送先住所から選択" %>
-
+    <br>
     <br>
     <%= f.radio_button :address_type, "new_address" %>
     <%= f.label :address_type, "新しいお届け先" %>
     <table>
       <tr>
         <td>郵便番号(ハイフンなし)</td>
-        <td><%= f.text_field :new_post_code, placeholder: "0000000" %></td>
+        <td><%= f.text_field :post_code, placeholder: "0000000" %></td>
       </tr>
       <tr>
         <td>住所</td>
-        <td><%= f.text_field :new_address, placeholder: "東京都渋谷区代々木神園町0-0" %></td>
+        <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", :size=>"60" %></td>
       </tr>
       <tr>
         <td>宛名</td>
-        <td><%= f.text_field :new_name, placeholder: "令和道子" %></td>
+        <td><%= f.text_field :name, placeholder: "令和道子" %></td>
       </tr>
     </table>
 

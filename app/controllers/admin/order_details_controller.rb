@@ -8,36 +8,25 @@ class Admin::OrderDetailsController < ApplicationController
     #@order_detail.update(order_detail_params)
     @order_details = @order.order_details.all
 
-
-  #   if @order_detail.making_status == "in_making"
-  #     @order.update(order_status: 2)
-  #   elsif @order.order_details.count == @order.order_details.where(making_status: "completed").count
-  #     @order.update(order_status: 3)
-  #   end
-
-  #   redirect_to admin_order_path(@order_detail.order)
-
-  #   flash[:notice] = "更新に成功しました！"
-
-  # end
-
-
-
-  #制作ステータスの更新が成功したかどうかのフラグ
+  #製作ステータスの更新が成功したかどうかのフラグ
     is_updated = true
     #注文詳細の製作ステータスを更新
-    if@order_detail.update(order_detail_params)
+    @order_detail.update(order_detail_params)
       # 製作ステータスが "製作中" の場合、注文のステータスを "製作中"に更新
-      @order.update(status: "making") if @order_detail.making_status == "in_making"
-
+    if @order_detail.making_status == "in_making"
+      @order.update(status: "making")
+    end
       # すべての注文詳細の製作ステータスが "製作完了" であるか確認
-      @order_details.each do |order_detail|
+
+    @order_details.each do |order_detail|
       if order_detail.making_status != "making_completed"
         is_updated = false # フラグを false に設定
       end
     end
+
       # すべての注文詳細の製作ステータスが "製作完了" の場合、注文のステータスを更新
-    @order.update(status: "preparing_ship") if is_updated
+    if is_updated == true
+      @order.update(status: "preparing_ship")
     end
     redirect_to admin_order_path(@order_detail.order), notice: "製作ステータスを更新しました" #注文詳細が属する注文の詳細ページにリダイレクト
   end
@@ -53,8 +42,6 @@ class Admin::OrderDetailsController < ApplicationController
   #   flash[:notice] = "更新に成功しました。"
   #   redirect_to admin_order_path(@order_detail.order.id)
   # end
-
-
 
   private
 

@@ -2,7 +2,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-10">
-      <h5 class="font-weight-bold w-25 text-center ml-5">注文履歴詳細</h5>
+      <h4 class="font-weight-bold w-25 text-center ml-5">【注文履歴詳細】</h4>
       <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
         <table class="table table-borderless " style="font-size: 20px;">
           <thead>
@@ -41,7 +41,7 @@
               <td><b>注文ステータス</b></td>
               <%#= f.select :status, @statuses, { selected: @order.status_before_type_cast }, class: "form-control form-control-sm col-8" %>
               <td><%= f.select :status, Order.statuses.keys.map { |k| [t("enums.order.status.#{k}"), k] }, {}, class: "form-control mr-2" %></td>
-              <td><%= f.submit "更新",class:"btn btn-info ml-4" %> </td>
+              <td><%= f.submit "更新",class:"btn btn-info ml-5" %> </td>
             </tr>
           </tbody>
         </table>
