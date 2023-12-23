@@ -1,8 +1,6 @@
 <div class="container mt-5 mb-5">
   <div class="row mb-4 ml-5">
-    <!--<div class="col">-->
-      <h4>商品新規登録</h4>
-    <!--</div>-->
+    <h4>商品新規登録</h4>
   </div>
 
   <div class="row justify-content-center">
@@ -30,19 +28,15 @@
       </tr>
       <tr>
         <td>販売ステータス</td>
-        <!--<td>-->
         <td class="row">
           <div class="col-4">
           <%= f.radio_button :is_active, true %>
           <%= f.label :is_active, "販売中" %>
           </div>
-        <!--</td>-->
-        <!--<td>-->
           <div class="col-5">
           <%= f.radio_button :is_active, false %>
           <%= f.label :is_active, "販売停止中" %>
           </div>
-        <!--</td>-->
         </td>
       </tr>
     </table>
