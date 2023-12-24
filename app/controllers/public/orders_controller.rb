@@ -119,7 +119,8 @@ class Public::OrdersController < ApplicationController
 
 
     def index
-      @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
+      @orders = Order.page(params[:page]).where(customer_id: current_customer.id).order(created_at: :desc)
+
 
     end
 
