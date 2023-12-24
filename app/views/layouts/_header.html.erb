@@ -1,7 +1,8 @@
 <header>
   <div class="navbar" style="background-color:#875647;">
       
-    　<div class="logo-section ">
+    <div class="logo-section d-flex justify-content-start">
+
          <% if admin_signed_in? %>
            <a class="navbar-brand " href="/admin" ><span><%= image_tag 'shop_logo.png', size: "120x90" %></span></a>
          <% else %>
@@ -10,12 +11,12 @@
       </div>  
     
       <div class="name-section" style="color: white;">
-        <% if customer_signed_in? %>
-			<h5>ようこそ、<%= current_customer.last_name %> さん!</h5>
-		<% elsif admin_signed_in? %>
-			<h5>管理者でログインしています</h5>
-		<% else %>
-		<% end %>
+         <% if customer_signed_in? %>
+    		<h5>ようこそ、<%= current_customer.last_name %> さん!</h5>
+         <% elsif admin_signed_in? %>
+    		<h5>管理者でログインしています</h5>
+    	 <% else %>
+    	 <% end %>
      </div>
 
 
@@ -24,42 +25,34 @@
        <div class="link-section mb-3">
 
                   <% if admin_signed_in? %>
-                    <!--adminにログインした状態でpublicに移動したとき、publicのヘッダーを表示させる記述-->
-                    <% if request.fullpath.include? "/admin" %>
-                    <!--admin側ログイン後のheaderを返す-->
+                <!--admin側ログイン後のheaderを返す-->
                           <%= link_to admin_items_path,class: "btn btn-outline-light rounded-pill ml-2" do %>商品一覧 <% end %>
                           <%= link_to admin_customers_path,class: "btn btn-outline-light rounded-pill ml-2" do %>会員一覧<% end %>
                           <%= link_to admin_root_path,class: "btn btn-outline-light rounded-pill ml-2" do %>注文履歴一覧<% end %>
                           <%= link_to admin_genres_path,class: "btn btn-outline-light rounded-pill ml-2" do %>ジャンル一覧<% end %>
-                          <%= link_to destroy_admin_session_path, method: :delete,class: "btn btn-outline-light rounded-pill ml-2" do %>ログアウト<% end %>
-                      <% else %>
-                         <!--customer側ログイン後のheaderを返す-->
-                          <%= link_to customer_path(current_customer),class: "btn btn-outline-light rounded-pill ml-2" do %>マイページ<% end %>
-                          <%= link_to items_path,class: 'btn btn-outline-light rounded-pill ml-2' do %>商品一覧<% end %>
-                          <%= link_to cart_items_path ,class: 'btn btn-outline-light rounded-pill ml-2' do %>カート<% end %>
-                          <%= link_to destroy_customer_session_path, method: :delete,class: 'btn btn-outline-light rounded-pill ml-2' do %>ログアウト<% end %>
-                      <% end %>
-                <% elsif customer_signed_in? %>
+                          <%= link_to destroy_admin_session_path, method: :delete,class: "btn btn-outline-light rounded-pill ml-2" do %>Log out<% end %>
+                     
+                  <% elsif customer_signed_in? %>
                 <!--customerログイン後のheaderを返す  -->
-                      <%= link_to customer_path(current_customer),class: "btn btn-outline-light rounded-pill ml-2" do %>マイページ <% end %>
-                      <%= link_to items_path,class: "btn btn-outline-light rounded-pill ml-2" do %>商品一覧 <% end %>
-                      <%= link_to cart_items_path ,class: "btn btn-outline-light rounded-pill ml-2" do %> カート<% end %>
-                      <%= link_to destroy_customer_session_path, method: :delete,class: "btn btn-outline-light rounded-pill ml-2" do %>ログアウト<% end %>
-                <% else %>
+                      <%= link_to customer_path(current_customer),class: "btn btn-outline-light rounded-pill ml-2" do %>My page <i class="fa-solid fa-user"></i><% end %>
+                      <%= link_to items_path,class: "btn btn-outline-light rounded-pill ml-2" do %>Item <i class="fa-solid fa-cake-candles"></i><% end %>
+                      <%= link_to cart_items_path ,class: "btn btn-outline-light rounded-pill ml-2" do %>Cart <i class="fa-solid fa-cart-shopping"></i><% end %>
+                      <%= link_to destroy_customer_session_path, method: :delete,class: "btn btn-outline-light rounded-pill ml-2" do %>Log out<% end %>
+                  <% else %>
                 <!--adminでもuserでもログインしていない時に表示するheaderのメニューを記載-->
                       <%= link_to home_about_path,class: "btn btn-outline-light rounded-pill ml-2" do %>About<% end %>
-                      <%= link_to items_path,class: "btn btn-outline-light rounded-pill ml-2" do %>商品一覧<% end %>
-                      <%= link_to new_customer_registration_path,class: "btn btn-outline-light rounded-pill ml-2" do %>新規登録<% end %>
-                      <%= link_to new_customer_session_path ,class: "btn btn-outline-light rounded-pill ml-2" do %>ログイン<% end %>
+                      <%= link_to items_path,class: "btn btn-outline-light rounded-pill ml-2" do %>Item <i class="fa-solid fa-cake-candles"></i><% end %>
+                      <%= link_to new_customer_registration_path,class: "btn btn-outline-light rounded-pill ml-2" do %>Sign up<i class="fa-solid fa-user-plus"></i><% end %>
+                      <%= link_to new_customer_session_path ,class: "btn btn-outline-light rounded-pill ml-2" do %>Log in<% end %>
 
-               <% end %>
+                  <% end %>
          </div>
        
          <div class="search-window d-flex justify-content-end mr-4">
-    　　<!--検索窓の表示-->
-     　　 <%= render 'layouts/search' %>
-     　　 
-     　　</div>
+    <!--検索窓の表示-->
+     <%= render 'layouts/search' %>
+    
+     </div>
     </div>
 </div>
           

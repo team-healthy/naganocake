@@ -5,7 +5,7 @@
  <div class="container">
   <div class="row">
     <div class="col mt-4">
-      <h5 class="font-weight-bold w-25 text-center">新規会員登録</h5>
+      <h3 class="col-3 mt-2 text-center" style="background-color:#faf0e6;">新規会員登録</h3>
       <%= form_with model: @customer, url:customer_registration_path, method: :post, class: 'new_customer' do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
         <table class="table　borderless mt-5" style="display:inline-block;">
@@ -37,7 +37,7 @@
                   <td>メールアドレス</td>
                   <td></td>
                   <td>
-                      <%= f.email_field :email, autofocus: true, placeholder:"sample@example.com",autocomplete: "email" %>
+                      <%= f.email_field :email, autofocus: true, placeholder:"sample@example.com",autocomplete: "email", :size => "30" %>
                   </td>
                   <td></td>
                   <td></td>

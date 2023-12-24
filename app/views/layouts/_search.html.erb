@@ -3,7 +3,10 @@
       <%= f.text_field :word %>
       <!--<#%= f.select :range, options_for_select([['Customer'], ['Item']]) %>-->
       <!--<#%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>-->
-      <%= f.submit "検索", class: "btn-sm btn-info " %>
+      
+      <%= f.button :submit, class: "btn-sm " do %>
+       <i class="fa-solid fa-magnifying-glass"></i>
+      <% end %>
     
   </div>
 <% end %>
