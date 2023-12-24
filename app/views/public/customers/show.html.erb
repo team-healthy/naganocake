@@ -5,7 +5,7 @@
                </div>
           </div>
               
-  <div class="row col-10 mt-1 mx-auto">
+  <div class="row col-6 mt-1 mx-auto">
              <div class="col-4 ">
                 <h4>登録情報   <%= link_to "編集する", edit_customer_path(current_customer), class: "btn btn-sm btn-info" %></h4>
              </div> 
@@ -16,7 +16,7 @@
              
               <table class="table table-bordered">
                 <tr>
-                  <th style="width: 30%">氏名</th>
+                  <th>氏名</th>
                   <td><%= @customer.last_name %><%= @customer.first_name %></td>
                 </tr>
                 <tr>
@@ -43,7 +43,7 @@
            
              
              
-                <div class = "row col-6" >
+                <div class = "row ml-2" >
                   
                     <h4>配送先</h4>
                     <%= link_to "一覧を見る", addresses_path(current_customer), class: "btn btn-sm btn-info ml-2 mr-2" %>
