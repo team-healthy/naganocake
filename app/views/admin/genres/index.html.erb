@@ -3,7 +3,7 @@
 </div>
 
 <div class="container mt-4 ml-15">
-  <div class="col">
+  <div class="col-3 text-center" style="font-family: 'Playfair Display', serif; background-color:#faf0e6;">
     <h4>ジャンル一覧・追加</h4>
   </div>
 </div>
@@ -28,7 +28,7 @@
 
 <div class="container mt-5 ml-5">
   <div class="row d-flex justify-content-center">
-    <div class="col-4">
+    <div class="col-6">
     <table class="table">
       <thead class="table table-active">
         <tr>
@@ -40,8 +40,14 @@
       <% @genres.each do |genre| %>
       <tbody>
         <tr>
-          <td><%= genre.name %></td>
-          <td><%= link_to '編集する', edit_admin_genre_path(genre.id), class: 'btn btn-info col-7 ml-5' %></td>
+          <td>
+            <div class="row ml-4"><%= genre.name %></div>
+          </td>
+          <td>
+            <div class="row de-flex justify-content-end">
+            <%= link_to '編集する', edit_admin_genre_path(genre.id), class: 'btn btn-info col-4 mr-5' %>
+            </div>
+            </td>
         </tr>
       </tbody>
       <% end %>

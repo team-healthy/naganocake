@@ -1,6 +1,6 @@
 <div class="container mb-5">
   <div class="row">
-    <div class="col mt-5 mb-4">
+    <div class="col-2 text-center mt-5 mb-4" style="font-family: 'Playfair Display', serif; background-color:#faf0e6;">
       <h4>商品一覧</h4>
     </div>
     <div class="col mt-5 d-flex justify-content-end">
@@ -45,5 +45,8 @@
     </tbody>
     <% end %>
   </table>
+  <div class="row d-flex justify-content-center mt-3">
+    <%= paginate @items, theme: 'twitter-bootstrap-4' %>
+  </div>
 </div>
 
