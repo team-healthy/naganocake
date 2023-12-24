@@ -1,4 +1,4 @@
-<div class="container p-3">
+<div class="container p-3" style="margin-bottom: 50px;">
   <div class="row">
 
   <div class="col-md-12">
@@ -8,9 +8,9 @@
      <h3 class=" mt-2" style="background-color:#faf0e6;"><strong>注文情報入力</strong></h3>
    </div>
   </div>
-    
-    
-    
+
+
+
     <%= form_with model: @order, url: orders_confirm_path, method: :post do |f|  %>
 
     <h5><strong>支払い方法</strong></h5>
