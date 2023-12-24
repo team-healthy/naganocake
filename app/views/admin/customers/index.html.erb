@@ -23,8 +23,7 @@
                       <tr>
                         <td><%= customer.id %></td>
                         <td>
-                            <%= link_to customer.last_name, edit_admin_customer_path(customer) %>
-                            <%= link_to customer.first_name, edit_admin_customer_path(customer) %>
+                            <%= link_to customer.last_name + customer.first_name, edit_admin_customer_path(customer) %> 
                         </td>
                         <td><%= customer.email %></td>
                         <td>
