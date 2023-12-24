@@ -1,11 +1,17 @@
 <div class="container p-3">
   <div class="row">
     <%#= render 'public/shared/header.html.erb' %>
+    
+    <div class="form-row justify-content-right">
+   <div class="col-12 form-group public-session-title text-center">
+     <h3  style="background-color:#faf0e6;"><strong>注文履歴詳細</strong></h3>
+   </div>
+   </div>
 
   <div class="col-md-12">
-    <h3>注文履歴詳細</h3>
+  <!--  <h3>注文履歴詳細</h3>-->
 
-    <h4>注文情報</h4>
+    <h4><strong>注文情報</strong></h4>
     <table class="table">
       <tr>
         <td>注文日</td>
@@ -25,7 +31,7 @@
       </tr>
     </table>
 
-    <h4>請求情報</h4>
+    <h4><strong>請求情報</strong></h4>
     <table class="table">
       <tr>
         <td>商品合計</td>
@@ -44,7 +50,7 @@
       </tr>
     </table>
 
-    <h4>注文内容</h4>
+    <h4><strong>注文内容</strong></h4>
     <table class="table">
       <tr>
         <td>商品</td>

@@ -1,11 +1,20 @@
-<div class="container p-3">
+
+<div class="container p-3" style="margin-bottom: 50px;">
   <div class="row">
-  <%#= render 'public/shared/header.html.erb' %>
-  <div class="col-md-12 ">
-    <h3>注文情報確認</h3>
+
+    <div class="col-md-12 ">
+
+       <div class="form-row justify-content-right">
+       <div class="col-2 form-group public-session-title text-center">
+       <h3  style="background-color:#faf0e6;"><strong>注文情報確認</strong></h3>
+       </div>
+      </div>
     </div>
-    <div class="col-md-6">
-    <table class="table table-borderedthead-light">
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-md-6 ">
+      <table class="table table-borderedthead-light">
       <tr>
         <td>商品名</td>
         <td>単価(税込)</td>
@@ -21,15 +30,15 @@
           <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
           <td><%= cart_item.amount %></td>
           <td><%= (cart_item.item.with_tax_price*cart_item.amount).to_s(:delimited) %></td>
-          <!--<td><%#= cart_item.item.add_sub_total.to_s(:delimited) %></td>-->
+          <td><%#= cart_item.item.add_sub_total.to_s(:delimited) %></td>
         </tr>
         <% @total += (cart_item.item.with_tax_price*cart_item.amount) %>
       <% end %>
-    </table>
+      </table>
     </div>
 
-    <div class="col-md-6">
-    <table  class="table table-bordered">
+    <div class="col-md-6 ">
+      <table  class="table table-bordered">
       <tr>
         <td>送料</td>
         <td><%= @shipping_cost %></td>
@@ -46,27 +55,21 @@
         <%= @total + @shipping_cost %>
         </td>
       </tr>
-    </table>
+      </table>
     </div>
+  </div>
 
-
-    <div class="col-md-6">
+    <div class="col-md-6 ">
       <h5><strong>支払い方法</strong></h5>
       <%= @order.payment_method_i18n %>
-  　 <%# if @selected_payment_method == "credit_card" %>
-        クレジットカード
-      <%# else %>
-        銀行振込
-      <%# end %>
-
+<br>
+<br>
     <h5><strong>お届け先</strong></h5>
-
     <%#= "〒"+ @selected_address %>
     <%= @order.full_address %>
     </div>
 
-
-
+     
 
     <%= form_with model: @order, url: orders_path, method: :post do |f| %>
       <%= f.hidden_field :payment_method, :value => @order.payment_method %>
@@ -75,6 +78,11 @@
       <%= f.hidden_field :name, :value => @order.name %>
       <%= f.hidden_field :shipping_cost, :value => @shipping_cost %>
       <%= f.hidden_field :total_payment, :value => (@total + @shipping_cost) %>
+      <div class="text-center ">
+      <%= submit_tag "注文を確定する", class: "btn btn-info" %>
+      </div>
+    <% end %>
+</div>
       <%#= hidden_field_tag 'order[address_type]', @address_type %>
 
       <%# if @address_type == "registered_address" %>
@@ -84,14 +92,6 @@
         <%#= hidden_field_tag 'order[new_address]', params[:order][:new_address] %>
         <%#= hidden_field_tag 'order[new_name]', params[:order][:new_name] %>
       <%# end %>
-      <div class="text-center">
-      <%= submit_tag "注文を確定する", class: "btn btn-info" %>
-      </div>
 
-    <% end %>
-  </div>
 
-    <%#= render 'public/shared/footer.html.erb' %>
 
-  </div>
-</div>

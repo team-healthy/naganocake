@@ -3,11 +3,19 @@
 
   <div class="col-md-12">
 
-    <h3>【 注文情報入力 】</h3>
+  <div class="form-row justify-content-right">
+   <div class="col-2 form-group public-session-title text-center">
+     <h3 class=" mt-2" style="background-color:#faf0e6;"><strong>注文情報入力</strong></h3>
+   </div>
+  </div>
+    
+    
+    
     <%= form_with model: @order, url: orders_confirm_path, method: :post do |f|  %>
 
     <h5><strong>支払い方法</strong></h5>
-    <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+
+    <%= f.radio_button :payment_method, Order.payment_methods.key(0) , checked: true %>
     <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
     <br>
     <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
@@ -24,7 +32,7 @@
     <br>
     <%= f.radio_button :address_type, [:registered_address] %>
     <%= f.label :address_type, "登録済住所から選択" %></br>
-    <%= f.select :registered_address_id, current_customer.addresses.all.map { |m| ["〒" + m.post_code+m.address+m.name, m.id] }, include_blank: "登録してある配送先住所から選択" %>
+    <%= f.select :registered_address_id, current_customer.addresses.all.map { |m| ["〒" + m.post_code + m.address+m.name, m.id] }, include_blank: "登録してある配送先住所から選択" %>
     <br>
     <br>
     <%= f.radio_button :address_type, "new_address" %>

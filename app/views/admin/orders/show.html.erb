@@ -1,8 +1,14 @@
 
-<div class="container mt-5">
-  <div class="row">
+<div class="container " style="margin-bottom: 50px;">
+  <div class="row mt-5">
     <div class="col-10">
-      <h4 class="font-weight-bold w-25 text-center ml-5">【注文履歴詳細】</h4>
+      
+      <div class="form-row justify-content-right">
+   <div class=" form-group public-session-title text-center">
+     <h3  style="background-color:#faf0e6;"><strong>注文履歴詳細</strong></h3>
+   </div>
+   </div>
+     
       <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
         <table class="table table-borderless " style="font-size: 20px;">
           <thead>

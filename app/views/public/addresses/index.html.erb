@@ -1,8 +1,15 @@
 <div class='container' style="margin-top: 50px;">
   <div class="row">
-    <div class="col-md-12">
-    <h4>配送先登録/一覧</h4>
+    
+      
+   <div class="form-row justify-content-right">
+   <div class="col-12 form-group public-session-title text-center">
+     <h3  style="background-color:#faf0e6;"><strong>配送先登録/一覧</strong></h3>
+   </div>
+   </div>
 
+   
+<div class="col-md-12">
     <%= form_with model: @address, url: addresses_path do |f|  %>
     　<div>
       <%= f.label :post_code, "郵便番号(ハイフンなし)", class: "col-3" %>
