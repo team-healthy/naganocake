@@ -1,9 +1,11 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
+<div class="container mt-5">
+  <div class="row mb-4 ml-5">
+    <div class="col-2 text-center" style="font-family: 'Playfair Display', serif; background-color:#faf0e6;">
       <h4>商品編集</h4>
     </div>
   </div>
+
+  <div class="row justify-content-center mb-5">
   <%= form_with model: @item, url: admin_item_path(@item) do |f| %>
     <table class="table table-borderless">
       <tr>
@@ -12,11 +14,11 @@
       </tr>
       <tr>
         <td>商品名</td>
-        <td><%= f.text_field :name, placeholder: '商品名'%></td>
+        <td><%= f.text_field :name, placeholder: '商品名', class: 'col'%></td>
       </tr>
       <tr>
         <td>商品説明</td>
-        <td><%= f.text_area :introduction, rows:'5', placeholder: 'ここに説明文を記述します'%></td>
+        <td><%= f.text_area :introduction, rows:'5', placeholder: 'ここに説明文を記述します', class: 'col'%></td>
       </tr>
       <tr>
         <td>ジャンル</td>
@@ -24,20 +26,25 @@
       </tr>
       <tr>
         <td>税抜価格</td>
-        <td><%= f.text_field :price,  placeholder: '1000' %>円</td>
+        <td><%= f.text_field :price,  placeholder: '1000', class: 'col' %>円</td>
       </tr>
       <tr>
         <td>販売ステータス</td>
-        <td>
+        <td class="row">
+          <div class="col-4">
           <%= f.radio_button :is_active, true %>
           <%= f.label :is_active, "販売中" %>
-        </td>
-        <td>
-         <%= f.radio_button :is_active, false %>
+          </div>
+          <div class="col-5">
+          <%= f.radio_button :is_active, false %>
           <%= f.label :is_active, "販売停止中" %>
+          </div>
         </td>
       </tr>
     </table>
-    <div><%= f.submit '変更を保存', class: 'btn btn-success' %></div>
+    <div class="row justify-content-center">
+      <%= f.submit '変更を保存', class: 'btn btn-lg btn-info col-4' %>
+    </div>
   <% end %>
+  </div>
 </div>

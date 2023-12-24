@@ -1,15 +1,24 @@
-<div class="container">
-  <div class="row">
-    <h4>商品一覧（全<%= @quantity %>件）</h4>
+<div class="container"  style="margin-bottom: 50px;">
+  <div class="row mt-5 mb-5">
+    <div class="col-3 text-center" style="font-family: 'Playfair Display', serif; background-color:#faf0e6;">
+      <h4>商品一覧（全<%= @quantity %>件）</h4>
+    </div>
   </div>
 
-  <div class="row">
-    <% @items.each do |item| %>
-      <%= link_to item_path(item) do %>
+  <div class="container">
+    <div class="d-flex flex-wrap">
+      <% @items.each do |item| %>
+      <div class="flex-item mb-5" style="flex-basis: 25%;">
+        <%= link_to item_path(item) do %>
         <p><%= image_tag(item.get_image(200,150)) %></p>
+        <% end %>
+        <p><%= item.name %></p>
+        <p>¥<%= item.with_tax_price.to_s(:delimited) %></p>
+      </div>
       <% end %>
-      <p><%= link_to item.name, item_path(item) %></p>
-      <p>¥<%= item.with_tax_price.to_s(:delimited) %></p>
-    <% end %>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center mb-3">
+  <%= paginate @items, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>

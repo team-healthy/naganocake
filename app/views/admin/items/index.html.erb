@@ -1,15 +1,15 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row">
-    <div class="col">
+    <div class="col-2 text-center mt-5 mb-4" style="font-family: 'Playfair Display', serif; background-color:#faf0e6;">
       <h4>商品一覧</h4>
     </div>
-    <div class="col">
-      <h1><%= link_to '+', new_admin_item_path, class: 'btn btn-outline-dark, rounded-circle'%></h1>
+    <div class="col mt-5 d-flex justify-content-end">
+      <h1><%= link_to '+', new_admin_item_path, class: 'btn btn-lg btn-outline-dark rounded-circle'%></h1>
     </div>
   </div>
 
-  <table>
-    <thead class="table-active">
+  <table class="col">
+    <thead class="table table-active">
       <tr>
         <th>商品ID</th>
         <th>商品名</th>
@@ -23,27 +23,30 @@
       <tr>
         <td><%= item.id %></td>
         <td>
-          <%= link_to admin_item_path(item), class: "link-dark link-underline-dark" do %>
-            <%= item.name %>
+          <style>
+            .link-underline-dark {
+            text-decoration: underline;
+            }
+          </style>
+          <%= link_to admin_item_path(item), class: "text-dark link-underline-dark" do %>
+            <strong><%= item.name %></strong>
           <% end %>
         </td>
         <td><%= item.price.to_s(:delimited) %></td>
         <td><%= item.genre.name %></td>
         <td>
           <% if item.is_active %>
-            <span class="text-success">販売中</span>
+            <strong><span class="text-success">販売中</span></strong>
           <% else %>
-            <span class="text-secondary">販売停止中</span>
+            <strong><span class="text-secondary">販売停止中</span></strong>
           <% end %>
         </td>
-        
-        
-        
-        
-        
       </tr>
     </tbody>
     <% end %>
   </table>
+  <div class="row d-flex justify-content-center mt-3">
+    <%= paginate @items, theme: 'twitter-bootstrap-4' %>
+  </div>
 </div>
 

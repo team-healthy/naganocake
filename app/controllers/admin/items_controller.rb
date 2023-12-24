@@ -9,7 +9,6 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      flash[:notice] = "新規登録に成功しました"
       redirect_to admin_item_path(@item)
     else
       @items = Item.all
@@ -18,7 +17,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
     @genres = Genre.all
   end
 
@@ -33,7 +32,6 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      flash[:notice] = '変更を保存しました'
       redirect_to admin_item_path(@item)
     else
       render :edit
