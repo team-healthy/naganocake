@@ -1,7 +1,15 @@
-<div class='container'>
+<div class='container' style="margin-top: 50px;">
+  <div class="row">
+    
+      
+   <div class="form-row justify-content-right">
+   <div class="col-12 form-group public-session-title text-center">
+     <h3  style="background-color:#faf0e6;"><strong>配送先登録/一覧</strong></h3>
+   </div>
+   </div>
 
-    <h4>配送先登録/一覧</h4>
-
+   
+<div class="col-md-12">
     <%= form_with model: @address, url: addresses_path do |f|  %>
     　<div>
       <%= f.label :post_code, "郵便番号(ハイフンなし)", class: "col-3" %>
@@ -17,14 +25,12 @@
       <div>
       <%= f.label :name, "宛名",class: "col-3" %>
       <%= f.text_field :name, placeholder: "令和道子", class: "col-3" %>
-      <%= f.submit "新規登録",class: "btn btn-success text-center" %>
+      <%= f.submit "新規登録",class: "btn btn-info text-center" %>
       </div>
 
      <% end %>
-
-
-
-
+<br>
+<br>
  <table  class="table table-bordered">
    <% if @addresses.empty? %>
 
@@ -42,13 +48,16 @@
             <td><%= address.name %></td>
             <td>
                 <!--id必要  edit_public_address_path-->
-                <%= link_to "編集する", edit_address_path(address.id),method: :get , class: "btn btn-success text-center" %>　　<%= link_to "削除する", address_path(address.id), method: :delete , class: "btn btn-danger" %><!-- pathにid必要 public_address_path-->
+                <%= link_to "編集する", edit_address_path(address.id),method: :get , class: "btn btn-info text-center" %>　　<%= link_to "削除する", address_path(address.id), method: :delete , class: "btn btn-danger" %><!-- pathにid必要 public_address_path-->
             </td>
         </tr>
         <% end %>
 
       </table>
    <% end %>
+
+     </div>
+  </div>
 </div>
 
 

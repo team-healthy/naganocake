@@ -1,8 +1,14 @@
 
-<div class="container mt-5">
-  <div class="row">
+<div class="container " style="margin-bottom: 50px;">
+  <div class="row mt-5">
     <div class="col-10">
-      <h5 class="font-weight-bold w-25 text-center ml-5">注文履歴詳細</h5>
+      
+      <div class="form-row justify-content-right">
+   <div class=" form-group public-session-title text-center">
+     <h3  style="background-color:#faf0e6;"><strong>注文履歴詳細</strong></h3>
+   </div>
+   </div>
+     
       <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
         <table class="table table-borderless " style="font-size: 20px;">
           <thead>
@@ -24,7 +30,7 @@
             </tr>
             <tr>
               <td><b>配送先</b></td>
-              <td colspan="2">〒<%= @order.post_code %> <%= @order.address %></br>
+              <td colspan="2">〒<%= @order.post_code %>  <%= @order.address %></br>
                 <%= @order.name %>
               </td>
               <td></td>
@@ -39,8 +45,9 @@
             </tr>
             <tr>
               <td><b>注文ステータス</b></td>
+              <%#= f.select :status, @statuses, { selected: @order.status_before_type_cast }, class: "form-control form-control-sm col-8" %>
               <td><%= f.select :status, Order.statuses.keys.map { |k| [t("enums.order.status.#{k}"), k] }, {}, class: "form-control mr-2" %></td>
-              <td><%= f.submit "更新",class:"btn btn-success ml-4" %> </td>
+              <td><%= f.submit "更新",class:"btn btn-info ml-5" %> </td>
             </tr>
           </tbody>
         </table>
@@ -68,10 +75,11 @@
                 <td><%= order_detail.amount %></td>
                  <td><%= order_detail.amount * order_detail.item.with_tax_price.to_s.gsub(",", "").to_i %></td>
                 <!--<td><%#= order_detail.making_status %></td>-->
-
-                <td><%= f.select :status, OrderDetail.making_statuses.keys.map { |k| [t("enums.order_details.making_status.#{k}"), k] }, {}, class: "form-select form-select-lg" %>
-
-                    <%= f.submit "更新", class:"btn btn-success ml-4" %>
+                <td><%= f.select :making_status, OrderDetail.making_statuses.keys.map { |k| [t("enums.order_details.making_status.#{k}"), k] }, {}, class: "form-select form-select-lg" %>
+              <%#= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch, html: { class: "form-inline" } do |f| %>
+              <!--<td><%#= f.select :status, OrderDetail.making_statuses.keys.map { |k| [t("enums.order_detail.status.#{k}"), k] }, {}, class: "form-control mr-2" %>-->
+              <%#= f.submit "更新", class: "btn btn-sm btn-success" %>
+                  <%= f.submit "更新", class:"btn btn-info ml-4" %>
                 </td>
               </tr>
             </tbody>

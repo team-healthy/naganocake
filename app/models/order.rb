@@ -2,6 +2,7 @@ class Order < ApplicationRecord
 
   belongs_to :customer
   has_many :order_details, dependent: :destroy
+  #has_many :items, through: :order_details
   validates :payment_method, presence: true
 
 # 消費税を求めるメソッド
@@ -11,6 +12,10 @@ class Order < ApplicationRecord
 
  def add_sub_total
     (item.price * 1.10).floor * amount
+  end
+  
+  def full_address
+    '〒' + ' ' + self.post_code + ' ' + self.address + ' ' + self.name
   end
 
   #支払い方法
