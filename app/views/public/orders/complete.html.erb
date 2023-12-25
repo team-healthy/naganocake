@@ -1,9 +1,39 @@
-
-<div class="container p-3 d-flex justify-content-center align-items-center" style="min-height: 100vh; margin-top: -100px;">
+<div class="container p-3 d-flex justify-content-center align-items-center" style="min-height: 100vh; background-image: url(<%= asset_path('christmas-room.jpg')%>); background-size: cover; filter: brightness(80%); ">
+         <style>
+          .snowflake {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            animation: fall 5s linear infinite, sway 3s linear infinite;
+          }
+        
+          @keyframes fall {
+            0% { top: -10px; }
+            100% { top: 100%; }
+          }
+        
+          @keyframes sway {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(50px); }
+          }
+        </style>
+        </head>
+        <body>
+          <div class="snowflake"></div>
+          <div class="snowflake"></div>
+          <div class="snowflake"></div>
+          <div class="snowflake" style="left: 100px; animation-delay: 1s;"></div>
+          <div class="snowflake" style="left: 200px; animation-delay: 2s;"></div>
+          <div class="snowflake" style="right: 100px; animation-delay: 1s;"></div>
+          <div class="snowflake" style="right: 200px; animation-delay: 2s;"></div>
+         
+        </body>
   <div class="row">
 
-    <div class="col-md-12 text-center" style= "font-family: 'Playfair Display', serif; ">
-      <h2>ご注文ありがとうございました！</h2>
+    <div class="col-12 text-center text-light" style= "font-family: 'Playfair Display', serif; ">
+      <h1><strong>ご注文ありがとうございました！</strong></h1>
 
     </div>
 
